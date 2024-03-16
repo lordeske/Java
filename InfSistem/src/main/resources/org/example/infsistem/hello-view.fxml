@@ -45,7 +45,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button id="admin_register" fx:id="admin_button" layoutX="118.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Registuj se" />
+            <Button id="admin_register" fx:id="admin_button" layoutX="118.0" layoutY="328.0" mnemonicParsing="false" onAction="#registerAdmin" prefHeight="26.0" prefWidth="94.0" text="Registuj se" />
             <Label layoutX="38.0" layoutY="415.0" text="Imate nalog?">
                <font>
                   <Font size="15.0" />
