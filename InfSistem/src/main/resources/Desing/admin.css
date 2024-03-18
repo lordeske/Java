@@ -1,0 +1,34 @@
+
+.fontAwesomeIconView {
+    -fx-fill: #007bff; /* Change the color of the icon */
+}
+
+
+.label {
+    -fx-font-size: 18px; /* Change font size */
+    -fx-font-weight: bold; /* Make text bold */
+}
+
+
+.button {
+    -fx-background-color: #007bff; /* Change button background color */
+    -fx-text-fill: white; /* Change button text color */
+    -fx-font-size: 14px; /* Change font size */
+    -fx-pref-width: 120px; /* Set preferred width */
+    -fx-pref-height: 30px; /* Set preferred height */
+}
+
+
+.button:hover {
+    -fx-background-color: #0056b3; /* Change button background color on hover */
+}
+
+
+.button:pressed {
+    -fx-background-color: #003d80; /* Change button background color when pressed */
+}
+
+
+.stack-pane {
+    -fx-background-color: #46b1ae; /* Set background color */
+}

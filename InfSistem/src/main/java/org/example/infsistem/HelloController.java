@@ -1,10 +1,17 @@
 package org.example.infsistem;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class HelloController {
@@ -299,8 +306,7 @@ public class HelloController {
 
 
 
-    public void loginAcc()
-    {
+    public void loginAcc() throws IOException {
 
         if(login_username.getText().isEmpty() || login_password.getText().isEmpty())
         {
@@ -332,9 +338,31 @@ public class HelloController {
                 result1 = prepare1.executeQuery();
 
 
-                if (result.next() || result1.next())
+                if (result.next())
                 {
                     alert.successMes("Lovoan si");
+                    return;
+                }
+                else if  (result1.next())
+                {
+                    alert.successMes("Lovan si, cekajte povezivanje na server");
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
+                    pause.setOnFinished(event -> {
+                        try {
+                            adminDash();
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                    pause.play();
+
+
+
+
+
+
+
                     return;
                 }
                 else
@@ -361,6 +389,30 @@ public class HelloController {
 
 
     }
+
+
+
+
+    public void adminDash() throws IOException {   /// prikazivanje drugoge strane
+
+        try {
+            Thread.sleep(2000);
+            Parent root = FXMLLoader.load(getClass().getResource("adminui.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+            login_button.getScene().getWindow().hide();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
+
 
 
 
