@@ -20,7 +20,7 @@
             <TextField id="login_password" fx:id="login_password" layoutX="30.0" layoutY="246.0" prefHeight="26.0" prefWidth="271.0" promptText="loznika" />
             <FontAwesomeIconView glyphName="USER" layoutX="148.0" layoutY="89.0" size="50" />
             <Label layoutX="119.0" layoutY="102.0" text="Dobrodosli nazad" />
-            <Button id="login_button" fx:id="login_button" layoutX="117.0" layoutY="290.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Prijavi se" />
+            <Button id="login_button" fx:id="login_button" layoutX="117.0" layoutY="290.0" mnemonicParsing="false" onAction="#loginAcc" prefHeight="26.0" prefWidth="94.0" text="Prijavi se" />
             <Label layoutX="34.0" layoutY="413.0" text="Nemate nalog?">
                <font>
                   <Font size="15.0" />
@@ -58,6 +58,7 @@
             </Label>
             <TextField id="admin_repassword" fx:id="admin_repassword" layoutX="30.0" layoutY="271.0" prefHeight="26.0" prefWidth="271.0" promptText="ponovite lozinku" />
             <Hyperlink fx:id="admin_link" layoutX="204.0" layoutY="414.0" onAction="#displayLogin" text="Prijavi se" />
+            <TextField id="admin_mail" fx:id="admin_mail" layoutX="30.0" layoutY="155.0" prefHeight="26.0" prefWidth="271.0" promptText="email" />
          </children>
       </AnchorPane>
       <AnchorPane id="user_form" fx:id="form_user" prefHeight="454.0" prefWidth="317.0" visible="false">
@@ -69,7 +70,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Button id="user_register" fx:id="user_button" layoutX="118.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Registuj se" />
+            <Button id="user_register" fx:id="user_button" layoutX="118.0" layoutY="328.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="26.0" prefWidth="94.0" text="Registuj se" />
             <Label layoutX="38.0" layoutY="415.0" text="Imate nalog?">
                <font>
                   <Font size="15.0" />

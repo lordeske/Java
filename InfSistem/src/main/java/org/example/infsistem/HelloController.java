@@ -25,6 +25,10 @@ public class HelloController {
     private TextField admin_repassword;
 
     @FXML
+    private TextField admin_mail;
+
+
+    @FXML
     private TextField admin_username;
 
     @FXML
@@ -65,9 +69,14 @@ public class HelloController {
 
 
     private Connection connect;
+    private Connection connect1;
+
     private PreparedStatement prepare;
+    private PreparedStatement prepare1;
     private Statement statement;
+    private Statement statement1;
     private ResultSet result;
+    private ResultSet result1;
 
     private AlertMes alert = new AlertMes();
 
@@ -121,64 +130,82 @@ public class HelloController {
 
 
 
-    public void registerAdmin()
-    {
-        if (admin_username.getText().isEmpty() || admin_password.getText().isEmpty() ||
-        admin_repassword.getText().isEmpty())
+    public void registerAdmin() throws SQLException {
+        if (admin_mail.getText().isEmpty() || admin_password.getText().isEmpty() || admin_repassword.getText().isEmpty() || admin_username.getText().isEmpty())
         {
-            alert.failMess("Molimo vas unesite sva polja");
+
+            alert.failMess("Morate unjeti sva polja");
+            return;
+
+
         }
         else
         {
-            connect = Database.connectDB();
-            String selectedData = "SELECT * FROM korisnici WHERE username = " + admin_username.getText();
+            connect = DatabaseAdmin.connectionDBA();
+
 
 
             try {
 
+
+                statement = connect.createStatement();
+                result = statement.executeQuery("SELECT * FROM korisnici WHERE ime = '" + admin_username.getText() + "'");
+
+
+                if (result.next())
+                {
+                    alert.failMess(admin_username.getText() + "vec postoji");
+                    return;
+                }
+                else
+                {
+                    result = statement.executeQuery("SELECT * FROM korisnici WHERE email = '" + admin_username.getText() + "'");
+
+                    if (result.next())
+                    {
+                        alert.failMess("Admin sa tim mailom vec postoji");
+                        return;
+                    }
+                    else if (!admin_password.getText().equals(admin_repassword.getText())) {
+
+                        alert.failMess("Lozinke se ne poklapaju");
+
+                    }
+                    else if (admin_password.getText().length() < 8) {
+                        alert.failMess("Lozinka mora sadržati najmanje 8 karaktera");
+                        return;
+                    }
+                    else
+                    {
+                        String insertdata = "INSERT INTO korisnici (ime,email, prezime, lozinka, status) VALUES (?, ?, ?, ?,?)";
+                        prepare = connect.prepareStatement(insertdata);
+                        prepare.setString(1,admin_username.getText());
+                        prepare.setString(2,admin_mail.getText());
+                        prepare.setString(3,"Prezimenovic");
+                        prepare.setString(4,admin_password.getText());
+                        prepare.setString(5,"Administrator");
+
+
+
+                        prepare.executeUpdate();
+                        alert.successMes("Uspjesno ste kreirali nalog");
+
+
+                    }
+                }
+
+
+
+
             }
             catch (Exception e)
             {
-                try {
-                    statement  = connect.createStatement();
-                    result = statement.executeQuery(selectedData);
-
-                    if(result.next())
-                    {
-                        alert.failMess(admin_username.getText() + "vec postoji");
-                    }
-                    else if (!admin_repassword.getText().equals(admin_repassword.getText())) {
-                        alert.failMess("Sifre se ne poklapaju");
-                    }
-                    else if (admin_password.getText().length() < 8) {
-                        alert.failMess("Morate unjeti bar 8 slova");
-                    } else
-                    {
-                        String insertdata = "INESRT INTO korisnici (ime, prezime, lozinka, status) "
-                                + "VALUES (?,?,?,?)";
-
-
-                        prepare = connect.prepareCall(insertdata);
-                        prepare.setString(1,admin_username.getText());
-                        prepare.setString(2,admin_password.getText());
-                        prepare.setString(3,admin_repassword.getText());
-                        prepare.setString(4,"Admin");
-
-                        prepare.executeUpdate();
-
-                        alert.successMes("Uspjestno ste kreirali nalog");
-                    }
-
-
-
-
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
-                }
-
+                System.out.printf("Nece");
             }
 
         }
+
+
 
 
 
@@ -187,8 +214,162 @@ public class HelloController {
 
 
 
+    public void registerUser() {
 
+        if (user_mail.getText().isEmpty() || user_passwrod.getText().isEmpty() || user_repassword.getText().isEmpty() || user_username.getText().isEmpty())
+        {
+
+            alert.failMess("Morate unjeti sva polja");
+            return;
+
+
+        }
+        else
+        {
+            connect = Database.connectDB();
+
+
+
+            try {
+
+
+                statement = connect.createStatement();
+                result = statement.executeQuery("SELECT * FROM korisnici WHERE ime = '" + user_username.getText() + "'");
+
+
+                if (result.next())
+                {
+                    alert.failMess(user_username.getText() + "vec postoji");
+                    return;
+                }
+                else
+                {
+                    result = statement.executeQuery("SELECT * FROM korisnici WHERE email = '" + user_mail.getText() + "'");
+
+                    if (result.next())
+                    {
+                        alert.failMess("Korisnik sa tim mailom vec postoji");
+                        return;
+                    }
+                    else if (!user_passwrod.getText().equals(user_repassword.getText())) {
+
+                        alert.failMess("Lozinke se ne poklapaju");
+
+                    }
+                    else if (user_passwrod.getText().length() < 8) {
+                        alert.failMess("Lozinka mora sadržati najmanje 8 karaktera");
+                        return;
+                    }
+                    else
+                    {
+                        String insertdata = "INSERT INTO korisnici (ime,email, prezime, lozinka, status) VALUES (?, ?, ?, ?,?)";
+                        prepare = connect.prepareStatement(insertdata);
+                        prepare.setString(1,user_username.getText());
+                        prepare.setString(2,user_mail.getText());
+                        prepare.setString(3,"Prezimenovic");
+                        prepare.setString(4,user_passwrod.getText());
+                        prepare.setString(5,"Korisnik");
+
+
+
+                        prepare.executeUpdate();
+                        alert.successMes("Uspjesno ste kreirali nalog");
+
+
+                    }
+                }
+
+
+
+
+            }
+            catch (Exception e)
+            {
+                System.out.printf("Nece");
+            }
+
+        }
+
+
+
+
+
+
+    }
+
+
+
+    public void loginAcc()
+    {
+
+        if(login_username.getText().isEmpty() || login_password.getText().isEmpty())
+        {
+            alert.failMess("Molimo vas unesite sve podatke");
+        }
+        else
+        {
+
+
+            try {
+                connect = Database.connectDB();  /// Konektovanje na dvije baze!! *user*
+                connect1 = DatabaseAdmin.connectionDBA();
+
+                String upitA = "SELECT * FROM korisnici WHERE ime = ? AND lozinka = ?";
+                String UpitU = "SELECT * FROM korisnici WHERE ime = ? AND lozinka = ?";
+
+
+                prepare = connect.prepareStatement(UpitU);
+                prepare1 = connect1.prepareStatement(upitA);
+
+
+                prepare.setString(1, login_username.getText());
+                prepare.setString(2, login_password.getText());
+
+                prepare1.setString(1, login_username.getText());
+                prepare1.setString(2, login_password.getText());
+
+                result = prepare.executeQuery();
+                result1 = prepare1.executeQuery();
+
+
+                if (result.next() || result1.next())
+                {
+                    alert.successMes("Lovoan si");
+                    return;
+                }
+                else
+                {
+                    alert.failMess("Netacni podatci");
+                }
+
+
+
+
+
+
+
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+
+            }
+
+
+        }
+
+
+
+
+
+    }
 
 
 
 }
+
+
+
+
+
+
+
+
