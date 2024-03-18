@@ -1,34 +1,35 @@
-
 .fontAwesomeIconView {
-    -fx-fill: #007bff; /* Change the color of the icon */
+    -fx-fill: #6ab187; /* Change the color of the icon */
 }
-
 
 .label {
     -fx-font-size: 18px; /* Change font size */
     -fx-font-weight: bold; /* Make text bold */
 }
 
-
 .button {
-    -fx-background-color: #007bff; /* Change button background color */
+    -fx-background-color: #6ab187; /* Change button background color */
     -fx-text-fill: white; /* Change button text color */
     -fx-font-size: 14px; /* Change font size */
     -fx-pref-width: 120px; /* Set preferred width */
     -fx-pref-height: 30px; /* Set preferred height */
 }
 
-
 .button:hover {
-    -fx-background-color: #0056b3; /* Change button background color on hover */
+    -fx-background-color: #83c5b5; /* Change button background color on hover */
 }
-
 
 .button:pressed {
-    -fx-background-color: #003d80; /* Change button background color when pressed */
+    -fx-background-color: #4c8b6f; /* Change button background color when pressed */
 }
 
-
 .stack-pane {
-    -fx-background-color: #46b1ae; /* Set background color */
+    -fx-background-color: #876ab1; /* Set background color */
+}
+
+.block {
+    -fx-background-color: #876ab1; /* Boja pozadine */
+    -fx-border-color: #cc9966; /* Boja ivice */
+    -fx-border-width: 2px; /* Debljina ivice */
+    -fx-border-radius: 10px; /* Radijus ivice */
 }

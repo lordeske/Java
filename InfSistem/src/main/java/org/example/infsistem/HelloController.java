@@ -351,6 +351,7 @@ public class HelloController {
                     pause.setOnFinished(event -> {
                         try {
                             adminDash();
+
                         } catch (IOException e) {
                             throw new RuntimeException(e);
                         }
