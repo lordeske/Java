@@ -14,7 +14,7 @@
 
 <StackPane prefHeight="569.0" prefWidth="931.0" stylesheets="@../../../Desing/admin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infsistem.MainFormController">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
          <children>
             <BorderPane prefHeight="570.0" prefWidth="206.0">
                <left>
@@ -73,23 +73,21 @@
                   </AnchorPane>
                   <AnchorPane layoutX="21.0" layoutY="277.0" prefHeight="246.0" prefWidth="647.0" stylesheets="@../../../Desing/admin2.css">
                      <children>
-                        <Label layoutX="14.0" layoutY="21.0" styleClass="label1" text="id proizvoda :" />
-                        <Label layoutX="70.0" layoutY="59.0" styleClass="label1" text="ime :" />
-                        <Label layoutX="76.0" layoutY="99.0" styleClass="label1" text="tip :" />
-                        <TextField fx:id="idProiz" layoutX="118.0" layoutY="19.0" prefHeight="22.0" prefWidth="127.0" />
-                        <TextField fx:id="imeProiz" layoutX="118.0" layoutY="58.0" prefHeight="22.0" prefWidth="127.0" />
-                        <ComboBox fx:id="tipProiz" layoutX="118.0" layoutY="97.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite tip">
+                        <Label layoutX="70.0" layoutY="20.0" styleClass="label1" text="ime :" />
+                        <Label layoutX="75.0" layoutY="58.0" styleClass="label1" text="tip :" />
+                        <TextField fx:id="imeProiz" layoutX="118.0" layoutY="18.0" prefHeight="22.0" prefWidth="127.0" />
+                        <ComboBox fx:id="tipProiz" layoutX="117.0" layoutY="56.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite tip">
 
                         </ComboBox>
                         <Label layoutX="255.0" layoutY="20.0" styleClass="label1" text="kolicina :" />
                         <Label layoutX="274.0" layoutY="59.0" styleClass="label1" text="cena :" />
-                        <Label layoutX="270.0" layoutY="98.0" styleClass="label1" text="status :" />
+                        <Label layoutX="57.0" layoutY="98.0" styleClass="label1" text="status :" />
                         <TextField fx:id="kolicinaProiz" layoutX="330.0" layoutY="18.0" prefHeight="22.0" prefWidth="127.0" />
                         <TextField fx:id="cenaProiz" layoutX="330.0" layoutY="57.0" prefHeight="22.0" prefWidth="127.0" />
-                        <ComboBox fx:id="statusProz" layoutX="330.0" layoutY="96.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite status">
+                        <ComboBox fx:id="statusProz" layoutX="117.0" layoutY="96.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite status">
 
                         </ComboBox>
-                        <Button fx:id="dodaj" layoutX="20.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="DODAJ" />
+                        <Button fx:id="dodaj" layoutX="20.0" layoutY="184.0" mnemonicParsing="false" onAction="#dodajUTabelu" prefWidth="159.0" styleClass="button123" text="DODAJ" />
                         <Button fx:id="azuriraj" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="AZURIRAJ" />
                         <Button fx:id="ocisti" layoutX="243.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OCISTI" />
                         <Button fx:id="obrisi" layoutX="357.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OBRISI" />

@@ -6,4 +6,5 @@ module org.example.infsistem {
 
     opens org.example.infsistem to javafx.fxml;
     exports org.example.infsistem;
+
 }

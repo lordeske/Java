@@ -9,12 +9,17 @@
     import javafx.scene.Scene;
     import javafx.scene.control.*;
     import javafx.scene.control.cell.PropertyValueFactory;
+    import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
     import javafx.scene.layout.AnchorPane;
+    import javafx.stage.FileChooser;
     import javafx.stage.Stage;
+    import org.example.infsistem.DatabaseProizvodi;
+    import org.example.infsistem.ProductData;
+    import org.example.infsistem.data;
 
+    import java.io.File;
     import java.io.IOException;
-    import java.net.SocketTimeoutException;
     import java.net.URL;
     import java.sql.*;
     import java.util.*;
@@ -51,8 +56,6 @@
         @FXML
         private AnchorPane formaZaposleni;
 
-        @FXML
-        private TextField idProiz;
 
         @FXML
         private TextField imeProiz;
@@ -104,6 +107,9 @@
         private ComboBox<String> tipProiz;
 
         @FXML
+        private AnchorPane main_form;
+
+        @FXML
         private Button umetni;
 
         @FXML
@@ -116,6 +122,9 @@
         private  PreparedStatement prepare;
         private Statement statement;
         private ResultSet result;
+        private Image image;
+
+        AlertMes alertMes = new AlertMes();
 
 
 
@@ -185,6 +194,7 @@
             alert.setContentText("Da li zelite da se odjavite");
             Optional <ButtonType> option = alert.showAndWait();
 
+
             if(option.get().equals(ButtonType.OK))
             {
 
@@ -241,6 +251,46 @@
         }
 
 
+        public void dodajUTabelu()
+        {
+
+            if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
+            statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() ||  kolicinaProiz.getText().isEmpty() ||
+            data.path.isEmpty())
+            {
+                alertMes.failMess("Molimo unesite sva polja");
+                return;
+
+            }
+
+
+
+        }
+
+
+        public void umetni()
+        {
+
+            FileChooser fc = new FileChooser();
+            fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Open Image File", "*.png", "*.jpg"));
+
+
+           File file = fc.showOpenDialog(main_form.getScene().getWindow());
+
+
+           if(file != null)
+           {
+                data.path =  file.getAbsolutePath();
+                image = new Image(file.toURI().toString(),120,127,false,true);
+
+                imgViewer.setImage(image);
+
+
+           }
+
+
+
+        }
 
 
 
