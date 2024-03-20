@@ -7,6 +7,11 @@
     -fx-font-weight: bold; /* Make text bold */
 }
 
+.label1 {
+    -fx-font-size: 18px; /* Change font size */
+    -fx-font-weight: bold; /* Make text bold */
+}
+
 .button {
     -fx-background-color: #6ab187; /* Change button background color */
     -fx-text-fill: white; /* Change button text color */
@@ -33,3 +38,5 @@
     -fx-border-width: 2px; /* Debljina ivice */
     -fx-border-radius: 10px; /* Radijus ivice */
 }
+
+

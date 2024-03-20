@@ -1,0 +1,56 @@
+.label1 {
+    -fx-font-size: 15px; /* Change font size */
+    -fx-font-weight: lighter;
+     /* Make text bold */
+}
+
+
+.button123 {
+    -fx-background-color: #6ab187; /* Change button background color */
+    -fx-text-fill: white; /* Change button text color */
+     -fx-font-size: 14px; /* Change font size */
+     -fx-pref-width: 100px; /* Set preferred width */
+     -fx-pref-height: 30px; /* Set preferred height */
+
+}
+
+.button123:hover {
+    -fx-background-color: #83c5b5; /* Change button background color on hover */
+}
+
+.button123:pressed {
+    -fx-background-color: #4c8b6f; /* Change button background color when pressed */
+}
+
+
+.buttonmini {
+    -fx-background-color: #6ab187; /* Change button background color */
+    -fx-text-fill: white; /* Change button text color */
+     -fx-font-size: 11px; /* Change font size */
+     -fx-pref-width: 70px; /* Set preferred width */
+     -fx-pref-height: 30px; /* Set preferred height */
+
+}
+
+
+.buttonmini:hover {
+    -fx-background-color: #83c5b5; /* Change button background color on hover */
+}
+
+.buttonmini:pressed {
+    -fx-background-color: #4c8b6f; /* Change button background color when pressed */
+}
+
+.panel {
+
+    -fx-background-color: #fff; /* Change button background color */
+}
+
+
+.tabela {
+
+    -fx-font-size: 6px; /* Change font size */
+
+}
+
+

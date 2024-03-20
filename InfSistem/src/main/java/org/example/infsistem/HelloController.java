@@ -124,8 +124,7 @@ public class HelloController {
 
 
 
-    public void displayLogin(ActionEvent event)
-    {
+    public void displayLogin(ActionEvent event) {
 
             login_form.setVisible(true);
             admin_form.setVisible(false);
@@ -346,6 +345,12 @@ public class HelloController {
                 else if  (result1.next())
                 {
                     alert.successMes("Lovan si, cekajte povezivanje na server");
+
+
+                    data.username = login_username.getText();
+
+
+
 
                     PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
                     pause.setOnFinished(event -> {
