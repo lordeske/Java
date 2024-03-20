@@ -14,7 +14,7 @@ public class DatabaseProizvodi {
 
 
 
-        connection = DriverManager.getConnection("jdbc:mysql://localhost/proizvodi", "root", "");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost/prozivodi", "root", "");
 
 
         return  connection;
