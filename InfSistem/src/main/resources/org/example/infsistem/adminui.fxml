@@ -21,10 +21,10 @@
                   <AnchorPane prefHeight="550.0" prefWidth="206.0" styleClass="stack-pane" stylesheets="@../../../Desing/admin.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIconView glyphName="USER" layoutX="89.0" layoutY="74.0" size="50" styleClass="fontAwesomeIconView" wrappingWidth="13.600006103515625" />
-                        <Label fx:id="username" layoutX="17.0" layoutY="91.0" text="Dobrodosli, Admine" />
-                        <Button fx:id="btnPocetna" layoutX="43.0" layoutY="159.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Pocetna" />
+                        <Label fx:id="username" layoutX="29.0" layoutY="91.0" prefHeight="27.0" prefWidth="162.0" />
+                        <Button fx:id="btnPocetna" layoutX="43.0" layoutY="159.0" mnemonicParsing="false" onAction="#displayPocetna" prefHeight="26.0" prefWidth="115.0" text="Pocetna" />
                         <Button fx:id="btnMeni" layoutX="43.0" layoutY="197.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Meni" />
-                        <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Zaposleni" />
+                        <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" onAction="#displayZaspoleni" prefHeight="26.0" prefWidth="115.0" text="Zaposleni" />
                         <Button fx:id="btnNarudzbine" layoutX="43.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Narudzbe" />
                         <Button fx:id="btnInvertar" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Invertar" />
                         <Button fx:id="odjava" layoutX="42.0" layoutY="476.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="115.0" text="Odjava" />
@@ -57,12 +57,13 @@
                      <children>
                         <TableView fx:id="tabela" prefHeight="238.0" prefWidth="647.0" styleClass="tabela">
                           <columns>
-                            <TableColumn fx:id="tabelaid" prefWidth="112.7999267578125" styleClass="tabela" text="id prozivoda" />
-                            <TableColumn fx:id="tebalaime" prefWidth="98.40008544921875" text="ime" />
-                              <TableColumn fx:id="tabelakolicina" prefWidth="139.19992065429688" text="kolicina" />
-                              <TableColumn fx:id="tabelacena" prefWidth="130.39996337890625" text="cena" />
-                              <TableColumn fx:id="tabelatip" prefWidth="75.0" text="tip" />
-                              <TableColumn fx:id="tabelastatus" prefWidth="75.0" text="status" />
+                            <TableColumn fx:id="tabelaid" prefWidth="66.4000244140625" styleClass="tabela" text="ID" />
+                            <TableColumn fx:id="tebalaime" prefWidth="98.39996337890625" text="Ime" />
+                              <TableColumn fx:id="tabelakolicina" prefWidth="103.199951171875" text="Kolicina" />
+                              <TableColumn fx:id="tabelacena" prefWidth="87.99990844726562" text="Cena" />
+                              <TableColumn fx:id="tabelatip" prefWidth="77.60003662109375" text="Tip" />
+                              <TableColumn fx:id="tabelastatus" prefWidth="113.60003662109375" text="Status" />
+                              <TableColumn fx:id="tabelaslika" prefWidth="101.5999755859375" text="slika" />
                           </columns>
                            <columnResizePolicy>
                               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -77,13 +78,17 @@
                         <Label layoutX="76.0" layoutY="99.0" styleClass="label1" text="tip :" />
                         <TextField fx:id="idProiz" layoutX="118.0" layoutY="19.0" prefHeight="22.0" prefWidth="127.0" />
                         <TextField fx:id="imeProiz" layoutX="118.0" layoutY="58.0" prefHeight="22.0" prefWidth="127.0" />
-                        <ComboBox fx:id="tipProiz" layoutX="118.0" layoutY="97.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite tip" />
+                        <ComboBox fx:id="tipProiz" layoutX="118.0" layoutY="97.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite tip">
+
+                        </ComboBox>
                         <Label layoutX="255.0" layoutY="20.0" styleClass="label1" text="kolicina :" />
                         <Label layoutX="274.0" layoutY="59.0" styleClass="label1" text="cena :" />
                         <Label layoutX="270.0" layoutY="98.0" styleClass="label1" text="status :" />
                         <TextField fx:id="kolicinaProiz" layoutX="330.0" layoutY="18.0" prefHeight="22.0" prefWidth="127.0" />
                         <TextField fx:id="cenaProiz" layoutX="330.0" layoutY="57.0" prefHeight="22.0" prefWidth="127.0" />
-                        <ComboBox fx:id="statusProz" layoutX="330.0" layoutY="96.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite status" />
+                        <ComboBox fx:id="statusProz" layoutX="330.0" layoutY="96.0" prefHeight="26.0" prefWidth="127.0" promptText="izaberite status">
+
+                        </ComboBox>
                         <Button fx:id="dodaj" layoutX="20.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="DODAJ" />
                         <Button fx:id="azuriraj" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="AZURIRAJ" />
                         <Button fx:id="ocisti" layoutX="243.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OCISTI" />

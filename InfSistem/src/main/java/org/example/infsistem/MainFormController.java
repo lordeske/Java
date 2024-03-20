@@ -1,5 +1,7 @@
 package org.example.infsistem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -11,9 +13,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.net.URL;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.sql.*;
+import java.util.*;
 
 public class MainFormController implements Initializable {
 
@@ -70,7 +73,7 @@ public class MainFormController implements Initializable {
 
 
     @FXML
-    private ComboBox<?> statusProz;
+    private ComboBox<String> statusProz;
 
     @FXML
     private TableView<?> tabela;
@@ -94,7 +97,7 @@ public class MainFormController implements Initializable {
     private TableColumn<?, ?> tebalaime;
 
     @FXML
-    private ComboBox<?> tipProiz;
+    private ComboBox<String> tipProiz;
 
     @FXML
     private Button umetni;
@@ -103,6 +106,52 @@ public class MainFormController implements Initializable {
     private Label username;
 
     private Alert alert;
+
+
+    private Connection connection;
+    private  PreparedStatement prepare;
+    private Statement statement;
+    private ResultSet result;
+
+
+
+    public ObservableList <ProductData> inventoryDataList() throws SQLException {
+
+
+      ObservableList<ProductData> listdata = FXCollections.observableArrayList();
+
+        String sql = "SELECT * FROM proizvodi";
+
+        connection = DatabaseProizvodi.connectionP();
+
+        prepare = connection.prepareStatement(sql);
+        result = prepare.executeQuery();
+
+        ProductData produktdata;
+
+        while (result.next())
+        {
+            produktdata = new ProductData(result.getInt("id"), result.getInt("KolicinaProizvoda"),result.getString("StatusProizvoda"),result.getString("SlikaProizvoda"),
+                    result.getDouble("CenaProizvoda"),result.getString("TIPPROIZVODA"),result.getString("IMEProizvoda"));
+
+            listdata.add(produktdata);
+
+        }
+
+
+
+        return listdata;
+    }
+
+    private ObservableList <ProductData> InvListData;
+
+    public void  prikaziTabeluData() throws SQLException {
+        InvListData = inventoryDataList();
+
+
+
+
+    }
 
 
 
@@ -150,11 +199,50 @@ public class MainFormController implements Initializable {
 
 
 
+
+    public void displayPocetna()
+    {
+        formaPocetna.setVisible(true);
+        formaZaposleni.setVisible(false);
+
+
+    }
+
+
+    public void displayZaspoleni()
+    {
+        formaPocetna.setVisible(false);
+        formaZaposleni.setVisible(true);
+
+
+    }
+
+    public void dodajStatuse()
+    {
+
+
+        statusProz.getItems().addAll("Dostupan","Nedostupan");
+        tipProiz.getItems().addAll("Pice","Hrana");
+
+
+    }
+
+
+
+
+
+
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
         displayUser();
+        dodajStatuse();
+
+
 
 
 

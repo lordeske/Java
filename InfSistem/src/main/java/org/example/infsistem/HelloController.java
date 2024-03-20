@@ -340,6 +340,7 @@ public class HelloController {
                 if (result.next())
                 {
                     alert.successMes("Lovoan si");
+                    data.username = login_username.getText();
                     return;
                 }
                 else if  (result1.next())
