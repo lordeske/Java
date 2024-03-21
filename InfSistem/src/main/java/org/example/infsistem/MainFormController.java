@@ -233,6 +233,39 @@
 
         }
 
+        public void ispisiUPolja()
+        {
+
+            ProductData prd = tabela.getSelectionModel().getSelectedItem();  // vrca objekat producdata
+            Integer i = tabela.getSelectionModel().getSelectedIndex(); ///vraca index
+
+            if ((i - 1) < -1 ) return;  // Pocinje od nule ako je manji od nula nista
+
+            imeProiz.setText(prd.getIme());
+            cenaProiz.setText(String.valueOf(prd.getCena())); // Kastovanje u string
+            kolicinaProiz.setText(String.valueOf(prd.getKolicina()));
+            tipProiz.setValue(prd.getTip());
+            statusProz.setValue(prd.getStatus());
+
+            //System.out.println(prd.getSlika());
+
+
+            Image image1 = new Image("File:" + prd.getSlika(),120,165,false,true);
+            imgViewer.setImage(image1);
+
+
+
+
+        }
+
+
+
+
+
+
+
+
+
 
         public void displayInvertar()
         {
@@ -298,6 +331,8 @@
                     prepare.executeUpdate();
 
                     prikaziTabeluData();
+                    ocisti();
+                    alertMes.successMes("Uspjesno ste dodali proizvod");
 
                 }
 
@@ -312,6 +347,22 @@
 
             }
 
+
+
+        }
+
+
+
+        public void ocisti()
+        {
+
+            imeProiz.setText("");
+            cenaProiz.setText("");
+            kolicinaProiz.setText("");
+            imgViewer.setImage(null);
+            statusProz.getSelectionModel().clearSelection();
+            tipProiz.getSelectionModel().clearSelection();
+            data.path = null; // cisti objekat
 
 
         }

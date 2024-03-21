@@ -32,7 +32,7 @@
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
+            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css" visible="false">
                <children>
                   <AnchorPane layoutX="66.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
                      <children>
@@ -51,11 +51,11 @@
                   <AnchorPane layoutX="66.0" layoutY="275.0" prefHeight="238.0" prefWidth="595.0" styleClass="block" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="FormaInvertar" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" visible="false">
+            <AnchorPane fx:id="FormaInvertar" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0">
                <children>
                   <AnchorPane layoutX="21.0" layoutY="14.0" prefHeight="238.0" prefWidth="647.0" stylesheets="@../../../Desing/admin2.css">
                      <children>
-                        <TableView fx:id="tabela" prefHeight="238.0" prefWidth="647.0" styleClass="tabela">
+                        <TableView fx:id="tabela" onMouseClicked="#ispisiUPolja" prefHeight="238.0" prefWidth="647.0" styleClass="tabela">
                           <columns>
                             <TableColumn fx:id="tabelaid" prefWidth="66.4000244140625" styleClass="tabela" text="ID" />
                             <TableColumn fx:id="tebalaime" prefWidth="98.39996337890625" text="Ime" />
@@ -89,13 +89,13 @@
                         </ComboBox>
                         <Button fx:id="dodaj" layoutX="20.0" layoutY="184.0" mnemonicParsing="false" onAction="#dodajUTabelu" prefWidth="159.0" styleClass="button123" text="DODAJ" />
                         <Button fx:id="azuriraj" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="AZURIRAJ" />
-                        <Button fx:id="ocisti" layoutX="243.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OCISTI" />
+                        <Button fx:id="ocisti" layoutX="243.0" layoutY="184.0" mnemonicParsing="false" onAction="#ocisti" prefWidth="159.0" styleClass="button123" text="OCISTI" />
                         <Button fx:id="obrisi" layoutX="357.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OBRISI" />
                         <AnchorPane fx:id="slika" layoutX="524.0" layoutY="14.0" prefHeight="110.0" prefWidth="80.0" styleClass="panel">
                            <children>
                               <ImageView fx:id="imgViewer" fitHeight="120.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            </children></AnchorPane>
-                        <Button fx:id="umetni" layoutX="529.0" layoutY="138.0" mnemonicParsing="false" prefWidth="159.0" styleClass="buttonmini" text="UMETNI" onAction="#umetni" />
+                        <Button fx:id="umetni" layoutX="529.0" layoutY="138.0" mnemonicParsing="false" onAction="#umetni" prefWidth="159.0" styleClass="buttonmini" text="UMETNI" />
                      </children></AnchorPane>
                </children></AnchorPane>
          </children>
