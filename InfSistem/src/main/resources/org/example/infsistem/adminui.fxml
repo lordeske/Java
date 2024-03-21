@@ -24,15 +24,15 @@
                         <Label fx:id="username" layoutX="29.0" layoutY="91.0" prefHeight="27.0" prefWidth="162.0" />
                         <Button fx:id="btnPocetna" layoutX="43.0" layoutY="159.0" mnemonicParsing="false" onAction="#displayPocetna" prefHeight="26.0" prefWidth="115.0" text="Pocetna" />
                         <Button fx:id="btnMeni" layoutX="43.0" layoutY="197.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Meni" />
-                        <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" onAction="#displayZaspoleni" prefHeight="26.0" prefWidth="115.0" text="Zaposleni" />
+                        <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" text="Zaposleni" />
                         <Button fx:id="btnNarudzbine" layoutX="43.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Narudzbe" />
-                        <Button fx:id="btnInvertar" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Invertar" />
+                        <Button fx:id="btnInvertar" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" text="Invertar" />
                         <Button fx:id="odjava" layoutX="42.0" layoutY="476.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="115.0" text="Odjava" />
                      </children>
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css" visible="false">
+            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
                <children>
                   <AnchorPane layoutX="66.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
                      <children>
@@ -51,7 +51,7 @@
                   <AnchorPane layoutX="66.0" layoutY="275.0" prefHeight="238.0" prefWidth="595.0" styleClass="block" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="formaZaposleni" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0">
+            <AnchorPane fx:id="FormaInvertar" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" visible="false">
                <children>
                   <AnchorPane layoutX="21.0" layoutY="14.0" prefHeight="238.0" prefWidth="647.0" stylesheets="@../../../Desing/admin2.css">
                      <children>
@@ -95,7 +95,7 @@
                            <children>
                               <ImageView fx:id="imgViewer" fitHeight="120.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
                            </children></AnchorPane>
-                        <Button fx:id="umetni" layoutX="529.0" layoutY="138.0" mnemonicParsing="false" prefWidth="159.0" styleClass="buttonmini" text="UMETNI" />
+                        <Button fx:id="umetni" layoutX="529.0" layoutY="138.0" mnemonicParsing="false" prefWidth="159.0" styleClass="buttonmini" text="UMETNI" onAction="#umetni" />
                      </children></AnchorPane>
                </children></AnchorPane>
          </children>

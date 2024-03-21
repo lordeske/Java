@@ -55,6 +55,8 @@
 
         @FXML
         private AnchorPane formaZaposleni;
+        @FXML
+        private AnchorPane FormaInvertar;
 
 
         @FXML
@@ -226,16 +228,16 @@
         public void displayPocetna()
         {
             formaPocetna.setVisible(true);
-            formaZaposleni.setVisible(false);
+            FormaInvertar.setVisible(false);
 
 
         }
 
 
-        public void displayZaspoleni()
+        public void displayInvertar()
         {
             formaPocetna.setVisible(false);
-            formaZaposleni.setVisible(true);
+            FormaInvertar.setVisible(true);
 
 
         }
@@ -251,8 +253,7 @@
         }
 
 
-        public void dodajUTabelu()
-        {
+        public void dodajUTabelu() throws SQLException {
 
             if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
             statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() ||  kolicinaProiz.getText().isEmpty() ||
@@ -260,6 +261,54 @@
             {
                 alertMes.failMess("Molimo unesite sva polja");
                 return;
+
+            }
+            else
+            {
+                connection = DatabaseProizvodi.connectionP();
+
+                String checkName = "SELECT * FROM proizvodi WHERE IMEProizvoda = ?" ;
+
+                prepare = connection.prepareStatement(checkName);
+                prepare.setString(1, imeProiz.getText());
+                result = prepare.executeQuery();
+
+                if(result.next())
+                {
+                    alertMes.failMess("Proizovd " + imeProiz.getText() + " vec postoji");
+                    return;
+
+
+                }
+                else
+                {
+                    String url = data.path;
+
+                    connection = DatabaseProizvodi.connectionP();
+
+                    String insertProizvodi = "INSERT INTO proizvodi " + "(TIPPROIZVODA, IMEProizvoda, KolicinaProizvoda, CenaProizvoda, StatusProizvoda, SlikaProizvoda)" + "VALUES(?,?,?,?,?,?)";
+
+                    prepare = connection.prepareStatement(insertProizvodi);
+                    prepare.setString(1, tipProiz.getSelectionModel().getSelectedItem());
+                    prepare.setString(2, imeProiz.getText());
+                    prepare.setString(3, kolicinaProiz.getText());
+                    prepare.setString(4, cenaProiz.getText());
+                    prepare.setString(5, statusProz.getSelectionModel().getSelectedItem());
+                    prepare.setString(6, url);
+                    prepare.executeUpdate();
+
+                    prikaziTabeluData();
+
+                }
+
+
+
+
+
+
+
+
+
 
             }
 
@@ -281,7 +330,7 @@
            if(file != null)
            {
                 data.path =  file.getAbsolutePath();
-                image = new Image(file.toURI().toString(),120,127,false,true);
+                image = new Image(file.toURI().toString(),120,165,false,true);
 
                 imgViewer.setImage(image);
 
