@@ -88,9 +88,9 @@
 
                         </ComboBox>
                         <Button fx:id="dodaj" layoutX="20.0" layoutY="184.0" mnemonicParsing="false" onAction="#dodajUTabelu" prefWidth="159.0" styleClass="button123" text="DODAJ" />
-                        <Button fx:id="azuriraj" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="AZURIRAJ" />
+                        <Button fx:id="azuriraj" layoutX="132.0" layoutY="184.0" mnemonicParsing="false" onAction="#apdejtuj" prefWidth="159.0" styleClass="button123" text="AZURIRAJ" />
                         <Button fx:id="ocisti" layoutX="243.0" layoutY="184.0" mnemonicParsing="false" onAction="#ocisti" prefWidth="159.0" styleClass="button123" text="OCISTI" />
-                        <Button fx:id="obrisi" layoutX="357.0" layoutY="184.0" mnemonicParsing="false" prefWidth="159.0" styleClass="button123" text="OBRISI" />
+                        <Button fx:id="obrisi" layoutX="357.0" layoutY="184.0" mnemonicParsing="false" onAction="#obrisi" prefWidth="159.0" styleClass="button123" text="OBRISI" />
                         <AnchorPane fx:id="slika" layoutX="524.0" layoutY="14.0" prefHeight="110.0" prefWidth="80.0" styleClass="panel">
                            <children>
                               <ImageView fx:id="imgViewer" fitHeight="120.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />

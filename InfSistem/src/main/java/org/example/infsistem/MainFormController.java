@@ -249,9 +249,65 @@
 
             //System.out.println(prd.getSlika());
 
+            data.path = prd.getSlika();
 
-            Image image1 = new Image("File:" + prd.getSlika(),120,165,false,true);
+            Image image1 = new Image("File:" + data.path,120,165,false,true);
             imgViewer.setImage(image1);
+
+
+
+
+        }
+
+
+        public void apdejtuj() throws SQLException {
+
+            if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
+                    statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() || kolicinaProiz.getText().isEmpty() ||
+                    data.path.isEmpty()) {
+                alertMes.failMess("Molimo unesite sva polja");
+                return;
+
+            } else
+            {
+
+                String updateSQL = "UPDATE proizvodi SET TIPPROIZVODA=?, IMEProizvoda=?, KolicinaProizvoda=?, CenaProizvoda=?, StatusProizvoda=?, SlikaProizvoda=? WHERE IMEProizvoda=?";
+
+                connection = DatabaseProizvodi.connectionP();
+
+                prepare = connection.prepareStatement(updateSQL);
+
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Odjava");
+                alert.setHeaderText(null);
+                alert.setContentText("Da li ste sigurni da zelite da azurirate " + imeProiz.getText() + " proizovd");
+                Optional <ButtonType> option = alert.showAndWait();
+
+
+                if(option.get().equals(ButtonType.OK))
+                {
+                    prepare.setString(1, tipProiz.getSelectionModel().getSelectedItem());
+                    prepare.setString(2, imeProiz.getText());
+                    prepare.setString(3, kolicinaProiz.getText());
+                    prepare.setString(4, cenaProiz.getText());
+                    prepare.setString(5, statusProz.getSelectionModel().getSelectedItem());
+                    prepare.setString(6, data.path);
+                    prepare.setString(7, imeProiz.getText());
+
+                    alertMes.successMes("Uspejsno ste azurirali proizvod " + imeProiz.getText());
+
+                    prepare.executeUpdate();
+                    prikaziTabeluData();
+                    ocisti();
+
+                }
+
+
+
+
+
+
+            }
 
 
 
@@ -394,6 +450,77 @@
 
 
 
+
+        public void obrisi() throws SQLException {
+            if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
+                    statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() ||  kolicinaProiz.getText().isEmpty() ||
+                    data.path.isEmpty())
+            {
+                alertMes.failMess("Molimo unesite sva polja");
+                return;
+
+            }
+            else
+            {
+                connection = DatabaseProizvodi.connectionP();
+
+                String checkName = "SELECT * FROM proizvodi WHERE IMEProizvoda = ?" ;
+
+                prepare = connection.prepareStatement(checkName);
+                prepare.setString(1, imeProiz.getText());
+                result = prepare.executeQuery();
+
+                if(!result.next())
+                {
+                    alertMes.failMess("Proizovd " + imeProiz.getText() + " proizvod ne postoji");
+                    return;
+
+
+                }
+                else
+                {
+                    String url = data.path;
+
+                    connection = DatabaseProizvodi.connectionP();
+
+                    String deleteProizvodi = "DELETE FROM proizvodi WHERE IMEProizvoda = ?";
+
+                    prepare = connection.prepareStatement(deleteProizvodi);
+                    prepare.setString(1, imeProiz.getText());
+
+                    Integer delRedovi = prepare.executeUpdate();
+
+                    if(delRedovi > 0)
+                    {
+                        alertMes.successMes("Uspješno ste obrisali proizvod " + imeProiz.getText());
+                        prikaziTabeluData();
+                        ocisti();
+
+                    }
+                    else
+                    {
+                        alertMes.failMess("Greska prilikom brisanja proizvoda");
+
+                    }
+
+
+
+                }
+
+
+
+
+
+
+
+
+
+
+            }
+
+
+
+        }
 
 
 
