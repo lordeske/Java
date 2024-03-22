@@ -12,6 +12,7 @@
     import javafx.scene.image.Image;
     import javafx.scene.image.ImageView;
     import javafx.scene.layout.AnchorPane;
+    import javafx.scene.layout.GridPane;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
     import org.example.infsistem.DatabaseProizvodi;
@@ -28,6 +29,8 @@
 
         @FXML
         private Button azuriraj;
+        @FXML
+        private GridPane MeniGridPane;
 
         @FXML
         private Button btnInvertar;
@@ -57,6 +60,8 @@
         private AnchorPane formaZaposleni;
         @FXML
         private AnchorPane FormaInvertar;
+ @FXML
+        private AnchorPane FormaMeni;
 
 
         @FXML
@@ -231,6 +236,9 @@
         {
             formaPocetna.setVisible(true);
             FormaInvertar.setVisible(false);
+            FormaMeni.setVisible(false);
+
+
 
 
         }
@@ -322,6 +330,9 @@
             /// Uzmi iz baze podatke svih prozivda i smjesti ih u listu opet!!
 
 
+            ObservableList<ProductData> cardListData = FXCollections.observableArrayList();
+
+
             String sql = "SELECT * FROM proizvodi";
             connection = DatabaseProizvodi.connectionP();
 
@@ -342,10 +353,36 @@
 
 
 
-        public void popuniMeni() throws SQLException {
+        public void popuniMeni() throws SQLException, IOException {
 
             cardListData.clear();
             cardListData.addAll(meniGetdata());
+
+            Integer col = 0;
+            Integer row = 0;
+
+            MeniGridPane.getRowConstraints().clear();
+            MeniGridPane.getColumnConstraints().clear();
+
+            for(Integer i = 0; i<cardListData.size(); i++)
+            {
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("karticaProizvoda.fxml"));
+                AnchorPane pane = load.load();
+                KarticaProizvodaController kardC = load.getController();
+                kardC.setData(cardListData.get(i));
+
+
+                if(col==3)
+                {
+                    col=0;
+                    row+=1;
+
+                }
+
+                MeniGridPane.add(pane,col++,row);
+
+            }
 
 
 
@@ -359,6 +396,16 @@
         {
             formaPocetna.setVisible(false);
             FormaInvertar.setVisible(true);
+            FormaMeni.setVisible(false);
+
+
+        }
+
+        public void displayMeni()
+        {
+            formaPocetna.setVisible(false);
+            FormaInvertar.setVisible(false);
+            FormaMeni.setVisible(true);
 
 
         }
@@ -374,7 +421,7 @@
         }
 
 
-        public void dodajUTabelu() throws SQLException {
+        public void dodajUTabelu() throws SQLException, IOException {
 
             if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
             statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() ||  kolicinaProiz.getText().isEmpty() ||
@@ -421,6 +468,7 @@
                     prikaziTabeluData();
                     ocisti();
                     alertMes.successMes("Uspjesno ste dodali proizvod");
+                    popuniMeni();
 
                 }
 
@@ -469,7 +517,7 @@
            if(file != null)
            {
                 data.path =  file.getAbsolutePath();
-                image = new Image(file.toURI().toString(),120,165,false,true);
+                image = new Image(file.toURI().toString(),120,140,false,true);
 
                 imgViewer.setImage(image);
 
@@ -483,7 +531,7 @@
 
 
 
-        public void obrisi() throws SQLException {
+        public void obrisi() throws SQLException, IOException {
             if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
                     statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() ||  kolicinaProiz.getText().isEmpty() ||
                     data.path.isEmpty())
@@ -536,6 +584,7 @@
                             alertMes.successMes("Uspješno ste obrisali proizvod " + imeProiz.getText());
                             prikaziTabeluData();
                             ocisti();
+                            popuniMeni();
 
                         }
                         else
@@ -580,15 +629,20 @@
             dodajStatuse();
             try {
                 prikaziTabeluData();
+                popuniMeni();
+
             } catch (SQLException e) {
                 throw new RuntimeException(e);
+
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-
-
-        }
-
+        }}
 
 
 
 
-    }
+
+
+
+
