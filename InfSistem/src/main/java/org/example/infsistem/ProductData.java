@@ -16,6 +16,7 @@ public class ProductData {
                         String tip, String ime)
     {
 
+        ///Konstuktor za upis u bazu i citanje
 
         this.cena= cena;
         this.id = id;
@@ -28,6 +29,20 @@ public class ProductData {
 
 
     }
+
+
+    public ProductData(String ime,Double cena, String slika)
+    {
+
+        this.ime = ime;
+        this.slika = slika;
+        this.cena= cena;
+
+        // Konstuktor za MENI
+    }
+
+
+
 
 
     public Integer getId() {

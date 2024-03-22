@@ -357,6 +357,7 @@ public class HelloController {
 
 
 
+
                     PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
                     pause.setOnFinished(event -> {
                         try {
@@ -404,7 +405,7 @@ public class HelloController {
 
 
 
-    public void adminDash() throws IOException {   /// prikazivanje drugoge strane
+    public void adminDash() throws IOException {   /// prikazivanje druge strane
 
         try {
             Thread.sleep(2000);

@@ -119,6 +119,8 @@
 
         private Alert alert;
 
+        ObservableList<ProductData> cardListData = FXCollections.observableArrayList();
+
 
         private Connection connection;
         private  PreparedStatement prepare;
@@ -183,7 +185,7 @@
         {
 
             String user = data.username;
-            username.setText("Zdravo "+ user );
+            username.setText("Zdravo "+ user + "(Admin)" );
 
         }
 
@@ -315,9 +317,39 @@
         }
 
 
+        public ObservableList<ProductData> meniGetdata() throws SQLException {
+
+            /// Uzmi iz baze podatke svih prozivda i smjesti ih u listu opet!!
+
+
+            String sql = "SELECT * FROM proizvodi";
+            connection = DatabaseProizvodi.connectionP();
+
+            prepare = connection.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            ProductData productData1;
+
+
+            while (result.next())
+            {
+                productData1 = new ProductData(result.getString("IMEProizvoda"),result.getDouble("CenaProizvoda"),result.getString("SlikaProizvoda"));
+                cardListData.add(productData1);
+            }
+
+            return cardListData;
+        }
 
 
 
+        public void popuniMeni() throws SQLException {
+
+            cardListData.clear();
+            cardListData.addAll(meniGetdata());
+
+
+
+        }
 
 
 
@@ -479,29 +511,44 @@
                 }
                 else
                 {
-                    String url = data.path;
+                    alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setTitle("Odjava");
+                    alert.setHeaderText(null);
+                    alert.setContentText("Da li ste sigurni da zelite da obrisete proizvod " + imeProiz.getText());
+                    Optional <ButtonType> option = alert.showAndWait();
 
-                    connection = DatabaseProizvodi.connectionP();
 
-                    String deleteProizvodi = "DELETE FROM proizvodi WHERE IMEProizvoda = ?";
-
-                    prepare = connection.prepareStatement(deleteProizvodi);
-                    prepare.setString(1, imeProiz.getText());
-
-                    Integer delRedovi = prepare.executeUpdate();
-
-                    if(delRedovi > 0)
+                    if(option.get().equals(ButtonType.OK))
                     {
-                        alertMes.successMes("Uspješno ste obrisali proizvod " + imeProiz.getText());
-                        prikaziTabeluData();
-                        ocisti();
+                        String url = data.path;
+
+                        connection = DatabaseProizvodi.connectionP();
+
+                        String deleteProizvodi = "DELETE FROM proizvodi WHERE IMEProizvoda = ?";
+
+                        prepare = connection.prepareStatement(deleteProizvodi);
+                        prepare.setString(1, imeProiz.getText());
+
+                        Integer delRedovi = prepare.executeUpdate();
+
+                        if(delRedovi > 0)
+                        {
+                            alertMes.successMes("Uspješno ste obrisali proizvod " + imeProiz.getText());
+                            prikaziTabeluData();
+                            ocisti();
+
+                        }
+                        else
+                        {
+                            alertMes.failMess("Greska prilikom brisanja proizvoda");
+
+                        }
+
 
                     }
-                    else
-                    {
-                        alertMes.failMess("Greska prilikom brisanja proizvoda");
 
-                    }
+
+
 
 
 
