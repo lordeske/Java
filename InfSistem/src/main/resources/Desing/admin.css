@@ -12,7 +12,7 @@
     -fx-font-weight: bold; /* Make text bold */
 }
 
-.button {
+.button13 {
     -fx-background-color: #6ab187; /* Change button background color */
     -fx-text-fill: white; /* Change button text color */
     -fx-font-size: 14px; /* Change font size */
@@ -20,11 +20,11 @@
     -fx-pref-height: 30px; /* Set preferred height */
 }
 
-.button:hover {
+.button13:hover {
     -fx-background-color: #83c5b5; /* Change button background color on hover */
 }
 
-.button:pressed {
+.button13:pressed {
     -fx-background-color: #4c8b6f; /* Change button background color when pressed */
 }
 

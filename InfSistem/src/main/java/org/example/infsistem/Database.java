@@ -12,7 +12,7 @@ public class Database {
         Connection connect = null;
 
         try {
-            connect = DriverManager.getConnection("jdbc:mysql://localhost/pva_vezba7", "root", "");
+            connect = DriverManager.getConnection("jdbc:mysql://localhost/kafic", "root", "");
         } catch (SQLException e) {
             System.out.println("Greška prilikom uspostavljanja veze sa bazom podataka: " + e.getMessage());
         }

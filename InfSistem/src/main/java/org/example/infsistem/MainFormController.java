@@ -15,9 +15,6 @@
     import javafx.scene.layout.GridPane;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
-    import org.example.infsistem.DatabaseProizvodi;
-    import org.example.infsistem.ProductData;
-    import org.example.infsistem.data;
 
     import java.io.File;
     import java.io.IOException;
@@ -144,7 +141,7 @@
 
             String sql = "SELECT * FROM proizvodi";
 
-            connection = DatabaseProizvodi.connectionP();
+            connection = Database.connectDB();
 
             prepare = connection.prepareStatement(sql);
             result = prepare.executeQuery();
@@ -186,7 +183,7 @@
 
 
 
-        public void displayUser()
+        public void displayAdmin()
         {
 
             String user = data.username;
@@ -270,7 +267,7 @@
         }
 
 
-        public void apdejtuj() throws SQLException {
+        public void apdejtuj() throws SQLException, IOException {
 
             if (imeProiz.getText().isEmpty() || cenaProiz.getText().isEmpty() || tipProiz.getSelectionModel().getSelectedItem() == null ||
                     statusProz.getSelectionModel().getSelectedItem() == null || imeProiz.getText().isEmpty() || kolicinaProiz.getText().isEmpty() ||
@@ -283,7 +280,7 @@
 
                 String updateSQL = "UPDATE proizvodi SET TIPPROIZVODA=?, IMEProizvoda=?, KolicinaProizvoda=?, CenaProizvoda=?, StatusProizvoda=?, SlikaProizvoda=? WHERE IMEProizvoda=?";
 
-                connection = DatabaseProizvodi.connectionP();
+                connection = Database.connectDB();
 
                 prepare = connection.prepareStatement(updateSQL);
 
@@ -309,6 +306,7 @@
                     prepare.executeUpdate();
                     prikaziTabeluData();
                     ocisti();
+                    popuniMeni();
 
                 }
 
@@ -334,7 +332,7 @@
 
 
             String sql = "SELECT * FROM proizvodi";
-            connection = DatabaseProizvodi.connectionP();
+            connection = Database.connectDB();
 
             prepare = connection.prepareStatement(sql);
             result = prepare.executeQuery();
@@ -354,6 +352,7 @@
 
 
         public void popuniMeni() throws SQLException, IOException {
+            MeniGridPane.getChildren().clear();
 
             cardListData.clear();
             cardListData.addAll(meniGetdata());
@@ -372,6 +371,7 @@
                 KarticaProizvodaController kardC = load.getController();
                 kardC.setData(cardListData.get(i));
 
+                MeniGridPane.add(pane,col++,row);
 
                 if(col==3)
                 {
@@ -380,7 +380,11 @@
 
                 }
 
-                MeniGridPane.add(pane,col++,row);
+                System.out.printf("OBRISANOO");
+
+
+
+
 
             }
 
@@ -401,8 +405,8 @@
 
         }
 
-        public void displayMeni()
-        {
+        public void displayMeni() throws SQLException, IOException {
+
             formaPocetna.setVisible(false);
             FormaInvertar.setVisible(false);
             FormaMeni.setVisible(true);
@@ -433,7 +437,7 @@
             }
             else
             {
-                connection = DatabaseProizvodi.connectionP();
+                connection = Database.connectDB();
 
                 String checkName = "SELECT * FROM proizvodi WHERE IMEProizvoda = ?" ;
 
@@ -452,7 +456,7 @@
                 {
                     String url = data.path;
 
-                    connection = DatabaseProizvodi.connectionP();
+                    connection = Database.connectDB();
 
                     String insertProizvodi = "INSERT INTO proizvodi " + "(TIPPROIZVODA, IMEProizvoda, KolicinaProizvoda, CenaProizvoda, StatusProizvoda, SlikaProizvoda)" + "VALUES(?,?,?,?,?,?)";
 
@@ -542,7 +546,7 @@
             }
             else
             {
-                connection = DatabaseProizvodi.connectionP();
+                connection = Database.connectDB();
 
                 String checkName = "SELECT * FROM proizvodi WHERE IMEProizvoda = ?" ;
 
@@ -570,7 +574,7 @@
                     {
                         String url = data.path;
 
-                        connection = DatabaseProizvodi.connectionP();
+                        connection = Database.connectDB();
 
                         String deleteProizvodi = "DELETE FROM proizvodi WHERE IMEProizvoda = ?";
 
@@ -585,6 +589,7 @@
                             prikaziTabeluData();
                             ocisti();
                             popuniMeni();
+
 
                         }
                         else
@@ -625,7 +630,7 @@
         public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-            displayUser();
+            displayAdmin();
             dodajStatuse();
             try {
                 prikaziTabeluData();

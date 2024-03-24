@@ -24,7 +24,7 @@
                   <AnchorPane prefHeight="550.0" prefWidth="206.0" styleClass="stack-pane" stylesheets="@../../../Desing/admin.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIconView glyphName="USER" layoutX="89.0" layoutY="74.0" size="50" styleClass="fontAwesomeIconView" wrappingWidth="13.600006103515625" />
-                        <Label fx:id="username" layoutX="2.0" layoutY="90.0" prefHeight="27.0" prefWidth="200.0" />
+                        <Label fx:id="username" layoutX="10.0" layoutY="88.0" prefHeight="27.0" prefWidth="187.0" />
                         <Button fx:id="btnPocetna" layoutX="43.0" layoutY="159.0" mnemonicParsing="false" onAction="#displayPocetna" prefHeight="26.0" prefWidth="115.0" text="Pocetna" />
                         <Button fx:id="btnMeni" layoutX="43.0" layoutY="197.0" mnemonicParsing="false" onAction="#displayMeni" prefHeight="26.0" prefWidth="115.0" text="Meni" />
                         <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" text="Zaposleni" />
@@ -35,7 +35,7 @@
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css" visible="false">
+            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
                <children>
                   <AnchorPane layoutX="66.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
                      <children>
@@ -101,7 +101,7 @@
                         <Button fx:id="umetni" layoutX="529.0" layoutY="138.0" mnemonicParsing="false" onAction="#umetni" prefWidth="159.0" styleClass="buttonmini" text="UMETNI" />
                      </children></AnchorPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="FormaMeni" layoutX="221.0" layoutY="12.0" prefHeight="547.0" prefWidth="697.0">
+            <AnchorPane fx:id="FormaMeni" layoutX="221.0" layoutY="12.0" prefHeight="547.0" prefWidth="697.0" visible="false">
                <children>
                   <ScrollPane fx:id="MeniScrollPane" prefHeight="547.0" prefWidth="698.0">
                      <content>

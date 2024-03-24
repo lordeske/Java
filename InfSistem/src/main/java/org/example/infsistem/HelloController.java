@@ -10,10 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import org.example.infsistem.AlertMes;
-import org.example.infsistem.Database;
-import org.example.infsistem.DatabaseAdmin;
-import org.example.infsistem.data;
 
 import java.io.IOException;
 import java.sql.*;
@@ -151,7 +147,7 @@ public class HelloController {
         }
         else
         {
-            connect = DatabaseAdmin.connectionDBA();
+            connect = Database.connectDB();
 
 
 
@@ -159,7 +155,7 @@ public class HelloController {
 
 
                 statement = connect.createStatement();
-                result = statement.executeQuery("SELECT * FROM korisnici WHERE ime = '" + admin_username.getText() + "'");
+                result = statement.executeQuery("SELECT * FROM admin WHERE ime = '" + admin_username.getText() + "'");
 
 
                 if (result.next())
@@ -169,7 +165,7 @@ public class HelloController {
                 }
                 else
                 {
-                    result = statement.executeQuery("SELECT * FROM korisnici WHERE email = '" + admin_username.getText() + "'");
+                    result = statement.executeQuery("SELECT * FROM admin WHERE email = '" + admin_username.getText() + "'");
 
                     if (result.next())
                     {
@@ -187,13 +183,12 @@ public class HelloController {
                     }
                     else
                     {
-                        String insertdata = "INSERT INTO korisnici (ime,email, prezime, lozinka, status) VALUES (?, ?, ?, ?,?)";
+                        String insertdata = "INSERT INTO admin (ime,email,lozinka) VALUES (?, ?, ?)";
                         prepare = connect.prepareStatement(insertdata);
                         prepare.setString(1,admin_username.getText());
                         prepare.setString(2,admin_mail.getText());
-                        prepare.setString(3,"Prezimenovic");
-                        prepare.setString(4,admin_password.getText());
-                        prepare.setString(5,"Administrator");
+                        prepare.setString(3,admin_password.getText());
+
 
 
 
@@ -272,13 +267,17 @@ public class HelloController {
                     }
                     else
                     {
-                        String insertdata = "INSERT INTO korisnici (ime,email, prezime, lozinka, status) VALUES (?, ?, ?, ?,?)";
+                        String insertdata = "INSERT INTO korisnici (ime,email,lozinka) VALUES (?, ?, ?)";
                         prepare = connect.prepareStatement(insertdata);
                         prepare.setString(1,user_username.getText());
                         prepare.setString(2,user_mail.getText());
-                        prepare.setString(3,"Prezimenovic");
-                        prepare.setString(4,user_passwrod.getText());
-                        prepare.setString(5,"Korisnik");
+                        prepare.setString(3,user_username.getText());
+
+
+
+
+
+
 
 
 
@@ -321,9 +320,9 @@ public class HelloController {
 
             try {
                 connect = Database.connectDB();  /// Konektovanje na dvije baze!! *user*
-                connect1 = DatabaseAdmin.connectionDBA();
+                connect1 = Database.connectDB();
 
-                String upitA = "SELECT * FROM korisnici WHERE ime = ? AND lozinka = ?";
+                String upitA = "SELECT * FROM admin WHERE ime = ? AND lozinka = ?";
                 String UpitU = "SELECT * FROM korisnici WHERE ime = ? AND lozinka = ?";
 
 
@@ -343,8 +342,30 @@ public class HelloController {
 
                 if (result.next())
                 {
-                    alert.successMes("Lovoan si");
+                    alert.successMes("Lovan si, cekajte povezivanje na server");
                     data.username = login_username.getText();
+
+
+
+
+
+                    PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
+                    pause.setOnFinished(event -> {
+                        try {
+                            userDash();
+
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                    pause.play();
+
+
+
+
+
+
+
                     return;
                 }
                 else if  (result1.next())
@@ -423,6 +444,26 @@ public class HelloController {
 
 
     }
+
+    public void userDash() throws IOException {   /// prikazivanje druge strane
+
+        try {
+            Thread.sleep(2000);
+            Parent root = FXMLLoader.load(getClass().getResource("userui.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.show();
+
+
+            login_button.getScene().getWindow().hide();
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+    }
+
 
 
 
