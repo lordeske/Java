@@ -42,6 +42,18 @@ public class ProductData {
     }
 
 
+    public ProductData(String ime,Double cena, Integer kolicina)
+    {
+
+        this.ime = ime;
+        this.kolicina = kolicina;
+        this.cena= cena;
+
+        // Konstuktor za MENI Shopping
+    }
+
+
+
 
 
 

@@ -39,16 +39,16 @@
         private Button btnRecept;
 
         @FXML
-        private TableColumn<?, ?> cenaProizovdaKolona;
+        private TableColumn<ProductData, String> cenaProizovdaKolona;
 
         @FXML
-        private TableColumn<?, ?> imeProizvodaKolona;
+        private TableColumn<ProductData, String> imeProizvodaKolona;
 
         @FXML
-        private TableColumn<?, ?> kolicinaProizovdaKolona;
+        private TableColumn<ProductData, String> kolicinaProizovdaKolona;
 
         @FXML
-        private TableView<?> tabelaKorisnik;
+        private TableView<ProductData> tabelaKorisnik;
 
         @FXML
         private TextField uplacenoPolje;
@@ -340,6 +340,77 @@
 
 
 
+        public ObservableList<ProductData> displayMenuOrder() throws SQLException {
+
+            ObservableList<ProductData> dataList = FXCollections.observableArrayList();
+
+
+            String SQL = "SELECT * FROM porudzbine";
+            connection = Database.connectDB();
+            prepare = connection.prepareStatement(SQL);
+            result = prepare.executeQuery();
+
+            while (result.next())
+            {
+
+                ProductData pr = new ProductData(result.getString("ime"),result.getDouble("cena"),result.getInt("kolicina"));
+
+
+                dataList.add(pr);
+
+            }
+
+
+
+            return dataList;
+
+        }
+
+
+
+
+
+        public ObservableList<ProductData>MenuListData;
+
+
+        public void showData() throws SQLException { /// Prikazivanje u korpu
+
+            MenuListData = displayMenuOrder();
+
+            imeProizvodaKolona.setCellValueFactory(new PropertyValueFactory<>("ime"));
+            kolicinaProizovdaKolona.setCellValueFactory(new PropertyValueFactory<>("kolicina"));
+            cenaProizovdaKolona.setCellValueFactory(new PropertyValueFactory<>("cena"));
+
+
+            tabelaKorisnik.setItems(MenuListData);
+
+        }
+
+        public double totalP;
+        public void displayMenuTotal() throws SQLException {
+
+            String sql = "SELECT SUM(cena) AS ukupna_cijena FROM porudzbine WHERE imeCovjeka = ?";
+
+            connection = Database.connectDB();
+            prepare = connection.prepareStatement(sql);
+            prepare.setString(1, data.username);
+            result = prepare.executeQuery();
+
+
+
+            if(result.next())
+            {
+
+              totalP = result.getDouble("ukupna_cijena");
+
+            }
+            UkupnoTekst.setText(String.valueOf(totalP)+"€");
+
+
+
+
+        }
+
 
 
 
@@ -370,6 +441,8 @@
 
             try {
                 popuniMeni();
+                showData();
+                displayMenuTotal();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

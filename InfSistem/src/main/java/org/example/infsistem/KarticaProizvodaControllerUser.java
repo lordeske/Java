@@ -76,8 +76,37 @@ public class KarticaProizvodaControllerUser implements Initializable {
         //////////// PRVO PROVJERAVAMO KOLICINU NJEU I DOSTUPONOST ZA SVAKI PROIZCVOD
 
 
-        qnt = brojacKolicine.getValue();/// Unos sa spinera
+        String kolicina = "SELECT KolicinaProizvoda FROM proizvodi WHERE IMEProizvoda = ?" ;
+
+        Integer kolicinaUBazi = 0;
         String check = "";
+        qnt = brojacKolicine.getValue();/// Unos sa spinera
+
+
+        connect = Database.connectDB();
+        prepare = connect.prepareStatement(kolicina);
+        prepare.setString(1, imeHraneText.getText());
+        result = prepare.executeQuery();
+
+        if(result.next())
+        {
+            kolicinaUBazi = result.getInt("KolicinaProizvoda");
+
+        }
+
+        Integer isUPStock = kolicinaUBazi - qnt;
+
+        if(kolicinaUBazi ==0)
+        {
+            String upit2 = "UPDATE proizvodi SET StatusProizvoda = ? WHERE IMEProizvoda = ?";
+            connect = Database.connectDB();
+            prepare = connect.prepareStatement(upit2);
+            prepare.setString(1, "Nedostupan");
+            prepare.setString(2, imeHraneText.getText());
+            prepare.executeUpdate();
+            System.out.printf("SREDUI");
+
+        }
 
         connect = Database.connectDB();
         String dosputpnost = "SELECT StatusProizvoda FROM proizvodi WHERE IMEProizvoda = ?";
@@ -99,33 +128,20 @@ public class KarticaProizvodaControllerUser implements Initializable {
             alertMes.failMess("Greska");
             return;
         }
-
-        //// AKO JE DOSTUPAN I NIE 0 RADI SLEDECE!!!
-
         else
         {
-            String kolicina = "SELECT KolicinaProizvoda FROM proizvodi WHERE IMEProizvoda = ?" ;
-            Integer kolicinaUBazi = 0;
 
 
-            connect = Database.connectDB();
-            prepare = connect.prepareStatement(kolicina);
-            prepare.setString(1, imeHraneText.getText());
-            result = prepare.executeQuery();
-
-            if(result.next())
-            {
-                kolicinaUBazi = result.getInt("KolicinaProizvoda");
-
-            }
 
 
             if(kolicinaUBazi < qnt)
             {
                 alertMes.failMess("Nema dovoljo proizovda");
+                return;
 
             }
-            else
+
+             else
             {
 
 
@@ -142,7 +158,6 @@ public class KarticaProizvodaControllerUser implements Initializable {
                 prepare.executeUpdate();
 
 
-                Integer isUPStock = kolicinaUBazi - qnt;
 
                 // ali oduzmi iz baze kupljeni prozivod!!!
 
@@ -159,6 +174,10 @@ public class KarticaProizvodaControllerUser implements Initializable {
 
                 AlertMes alertMes = new AlertMes();
                 alertMes.successMes("Uspjesno dodato");
+
+                MainFormControllerUser m1= new MainFormControllerUser();
+                m1.showData();
+                m1.displayMenuTotal();
 
             }
 
