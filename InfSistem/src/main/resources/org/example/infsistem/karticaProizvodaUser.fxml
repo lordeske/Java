@@ -41,7 +41,7 @@
                               <Insets left="10.0" top="3.0" />
                            </HBox.margin>
                         </Spinner>
-                        <Button fx:id="btnDodajUkasu" mnemonicParsing="false" prefHeight="26.0" prefWidth="56.0" text="Dodaj">
+                        <Button fx:id="btnDodajUkasu" mnemonicParsing="false" onAction="#UmetniUKasu" prefHeight="26.0" prefWidth="56.0" text="Dodaj">
                            <HBox.margin>
                               <Insets left="8.0" top="3.0" />
                            </HBox.margin>
