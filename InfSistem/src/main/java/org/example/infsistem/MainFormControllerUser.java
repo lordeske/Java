@@ -457,7 +457,7 @@
 
 
 
-
+        String email="";
 
         public void  posaljiRecept() throws SQLException {
 
@@ -479,13 +479,25 @@
 
 
                 /// dobijanje maila
-                String sql2 =  "SELECT email FROM korisnici WERE ime =?";
+                String sql2 =  "SELECT email FROM korisnici WHERE ime =?";
                 connection =Database.connectDB();
-                prepare = connection.prepareStatement(sql);
+                prepare = connection.prepareStatement(sql2);
                 prepare.setString(1, data.username);
                 result = prepare.executeQuery();
 
-                String email =  result.getString("email");
+                if(result.next()){
+
+                    email = result.getString("email");
+                    EmailSender.sendEmail(email, "Porudzbina", tesktZaSlanje);
+                    alertMes.successMes("Racun vam je stigao na mail");
+
+                }
+                else {
+                    System.out.println("Nema mail od korisnika: " + data.username);
+                }
+
+
+
 
 
                 EmailSender.sendEmail(email,"Porudzbina",tesktZaSlanje);
