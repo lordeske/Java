@@ -476,16 +476,32 @@
 
                     String plati  = "INSERT INTO racun (imeKupca,ukupnaCena, datum) VALUES (?,?,?)";
                     connection = Database.connectDB();
-
-
-
                     prepare = connection.prepareStatement(plati);
                     prepare.setString(1, data.username);
                     prepare.setString(2, String.valueOf(totalP));
                     prepare.setString(3, formatiraniDatum);
                     prepare.executeUpdate();
-                    
                     alertMes.successMes("Uspjesno ste narucili narudzbu");
+
+
+                    ///// OCISTI CART
+                    String obrisiNarudbu = "DELETE FROM porudzbine WHERE imeCovjeka = ?";
+                    connection = Database.connectDB();
+
+                    prepare = connection.prepareStatement(obrisiNarudbu);
+                    prepare.setString(1, data.username);
+                    prepare.executeUpdate();
+
+                    showData();
+                    displayMenuTotal();
+                    povratText.setText("0.00");
+                    uplacenoPolje.setText(null);
+
+
+
+
+
+
 
 
                 }
