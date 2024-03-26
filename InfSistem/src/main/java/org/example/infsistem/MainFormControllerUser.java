@@ -419,6 +419,84 @@
 
         }
 
+        public void obrisiIzTabelice() throws SQLException {
+
+            ProductData pr = tabelaKorisnik.getSelectionModel().getSelectedItem();
+
+
+            if(pr == null)
+            {
+                alertMes.failMess("Morate izabrati proizvod");
+                return;
+            }
+
+
+
+            String sql = "DELETE FROM porudzbine WHERE idPrdzine = ? AND cena = ? AND kolicina = ?";
+            connection = Database.connectDB();
+            prepare = connection.prepareStatement(sql);
+            prepare.setString(1, pr.getIme());
+            prepare.setDouble(2, pr.getCena());
+            prepare.setInt(3, pr.getKolicina());
+            prepare.executeUpdate();
+
+
+            showData();
+            displayMenuTotal();
+
+
+
+
+
+
+
+
+        }
+
+
+
+
+
+
+
+        public void  posaljiRecept() throws SQLException {
+
+            /// dobijanje racuna
+            String sql =  "SELECT * FROM racun WHERE imeKupca =?";
+
+            connection =Database.connectDB();
+            prepare = connection.prepareStatement(sql);
+            prepare.setString(1, data.username);
+            result = prepare.executeQuery();
+
+            if(result.next())
+            {
+                String datum = result.getString("datum");
+                String ukupnaCena = result.getString("ukupnaCena");
+
+                String tesktZaSlanje = "Postovani " +data.username + " dana " + datum + " narucili ste hranu u vrijednosti od "
+                        + ukupnaCena;
+
+
+                /// dobijanje maila
+                String sql2 =  "SELECT email FROM korisnici WERE ime =?";
+                connection =Database.connectDB();
+                prepare = connection.prepareStatement(sql);
+                prepare.setString(1, data.username);
+                result = prepare.executeQuery();
+
+                String email =  result.getString("email");
+
+
+                EmailSender.sendEmail(email,"Porudzbina",tesktZaSlanje);
+                alertMes.successMes("Racun vam je stigao na mail");
+
+
+            }
+
+
+
+        }
 
 
 
@@ -497,6 +575,8 @@
                     povratText.setText("0.00");
                     uplacenoPolje.setText(null);
 
+                    posaljiRecept();
+
 
 
 
@@ -521,6 +601,7 @@
 
 
         }
+
 
 
 

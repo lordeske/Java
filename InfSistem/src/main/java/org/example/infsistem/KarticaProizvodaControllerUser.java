@@ -175,6 +175,8 @@ public class KarticaProizvodaControllerUser implements Initializable {
                 AlertMes alertMes = new AlertMes();
                 alertMes.successMes("Uspjesno dodato");
 
+
+
                 // Referenca na MainFormControllerUser
 
 

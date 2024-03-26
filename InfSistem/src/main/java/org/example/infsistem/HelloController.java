@@ -88,17 +88,13 @@ public class HelloController {
     private AlertMes alert = new AlertMes();
 
 
+    public void swichForm(ActionEvent event) {
 
-    public void swichForm(ActionEvent event)
-    {
-
-        if (login_role.getSelectionModel().getSelectedItem().equals("User"))
-        {
+        if (login_role.getSelectionModel().getSelectedItem().equals("User")) {
             form_user.setVisible(true);
             login_form.setVisible(false);
             admin_form.setVisible(false);
             login_role.getSelectionModel().clearSelection();
-
 
 
         } else if (login_role.getSelectionModel().getSelectedItem().equals("Admin")) {
@@ -109,9 +105,7 @@ public class HelloController {
             login_role.getSelectionModel().clearSelection();
 
 
-        }
-        else
-        {
+        } else {
             form_user.setVisible(false);
             login_form.setVisible(true);
             admin_form.setVisible(false);
@@ -121,34 +115,27 @@ public class HelloController {
 
 
     }
-
 
 
     public void displayLogin(ActionEvent event) {
 
-            login_form.setVisible(true);
-            admin_form.setVisible(false);
-            form_user.setVisible(false);
-            login_role.getSelectionModel().clearSelection();
+        login_form.setVisible(true);
+        admin_form.setVisible(false);
+        form_user.setVisible(false);
+        login_role.getSelectionModel().clearSelection();
 
     }
 
 
-
-
     public void registerAdmin() throws SQLException {
-        if (admin_mail.getText().isEmpty() || admin_password.getText().isEmpty() || admin_repassword.getText().isEmpty() || admin_username.getText().isEmpty())
-        {
+        if (admin_mail.getText().isEmpty() || admin_password.getText().isEmpty() || admin_repassword.getText().isEmpty() || admin_username.getText().isEmpty()) {
 
             alert.failMess("Morate unjeti sva polja");
             return;
 
 
-        }
-        else
-        {
+        } else {
             connect = Database.connectDB();
-
 
 
             try {
@@ -158,38 +145,28 @@ public class HelloController {
                 result = statement.executeQuery("SELECT * FROM admin WHERE ime = '" + admin_username.getText() + "'");
 
 
-                if (result.next())
-                {
+                if (result.next()) {
                     alert.failMess(admin_username.getText() + "vec postoji");
                     return;
-                }
-                else
-                {
-                    result = statement.executeQuery("SELECT * FROM admin WHERE email = '" + admin_username.getText() + "'");
+                } else {
+                    result = statement.executeQuery("SELECT * FROM korisnici WHERE email = '" + admin_username.getText() + "'");
 
-                    if (result.next())
-                    {
+                    if (result.next()) {
                         alert.failMess("Admin sa tim mailom vec postoji");
                         return;
-                    }
-                    else if (!admin_password.getText().equals(admin_repassword.getText())) {
+                    } else if (!admin_password.getText().equals(admin_repassword.getText())) {
 
                         alert.failMess("Lozinke se ne poklapaju");
 
-                    }
-                    else if (admin_password.getText().length() < 8) {
+                    } else if (admin_password.getText().length() < 8) {
                         alert.failMess("Lozinka mora sadržati najmanje 8 karaktera");
                         return;
-                    }
-                    else
-                    {
+                    } else {
                         String insertdata = "INSERT INTO admin (ime,email,lozinka) VALUES (?, ?, ?)";
                         prepare = connect.prepareStatement(insertdata);
-                        prepare.setString(1,admin_username.getText());
-                        prepare.setString(2,admin_mail.getText());
-                        prepare.setString(3,admin_password.getText());
-
-
+                        prepare.setString(1, admin_username.getText());
+                        prepare.setString(2, admin_mail.getText());
+                        prepare.setString(3, admin_password.getText());
 
 
                         prepare.executeUpdate();
@@ -200,22 +177,15 @@ public class HelloController {
                 }
 
 
-
-
-            }
-            catch (Exception e)
-            {
+            } catch (Exception e) {
                 System.out.printf("Nece");
             }
 
         }
 
-
-
-
-
-
     }
+
+
 
 
 
@@ -271,7 +241,7 @@ public class HelloController {
                         prepare = connect.prepareStatement(insertdata);
                         prepare.setString(1,user_username.getText());
                         prepare.setString(2,user_mail.getText());
-                        prepare.setString(3,user_username.getText());
+                        prepare.setString(3,user_passwrod.getText());
 
 
 
