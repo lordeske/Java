@@ -20,6 +20,8 @@
     import java.io.IOException;
     import java.net.URL;
     import java.sql.*;
+    import java.time.LocalDate;
+    import java.time.format.DateTimeFormatter;
     import java.util.Optional;
     import java.util.ResourceBundle;
 
@@ -30,6 +32,7 @@
         private Label UkupnoTekst;
         @FXML
         private Button btnObrisi;
+
 
         @FXML
         private Button btnPlati;
@@ -235,6 +238,7 @@
 
 
 
+
         }
 
 
@@ -330,6 +334,8 @@
             formaPocetna.setVisible(false);
 
             FormaMeni.setVisible(true);
+            showData();
+            displayMenuTotal();
 
 
         }
@@ -384,6 +390,8 @@
 
             tabelaKorisnik.setItems(MenuListData);
 
+
+
         }
 
         public double totalP;
@@ -414,12 +422,89 @@
 
 
 
+        private  Double povrat;
+        public void uplata() throws SQLException {
+
+            if(uplacenoPolje.getText().isEmpty())
+            {
+                alertMes.failMess("Molimo vas unesite kolicinu za uplatu");
+                return;
+            }
+            else if(Integer.parseInt(uplacenoPolje.getText() ) < totalP)
+            {
+                alertMes.failMess("Nemate dovoljno novca!! ");
+                return;
+            }
+
+            else
+            {
+
+                Double povrat =  totalP -  Integer.parseInt(uplacenoPolje.getText()) ;
+
+                povratText.setText(String.valueOf(Math.abs(povrat)) + "€");
+
+
+            }
+        }
+
+
+
+        public void plati() throws SQLException {
+            if (totalP == 0) {
+                alertMes.failMess("Narucite prozivod prvo");
+                return;
+
+            } else if (uplacenoPolje.getText().isEmpty()) {
+                alertMes.failMess("Uplatite novac");
+                return;
+            }
+            else
+            {
+
+                alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Povrda");
+                alert.setHeaderText(null);
+                alert.setContentText("Da li li zelite da platite?");
+                Optional<ButtonType> opt = alert.showAndWait();
+
+
+                if(opt.get().equals(ButtonType.OK))
+                {
+                    LocalDate trenutniDatum = LocalDate.now();
+                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                    String formatiraniDatum = trenutniDatum.format(formatter);
+
+                    String plati  = "INSERT INTO racun (imeKupca,ukupnaCena, datum) VALUES (?,?,?)";
+                    connection = Database.connectDB();
+
+
+
+                    prepare = connection.prepareStatement(plati);
+                    prepare.setString(1, data.username);
+                    prepare.setString(2, String.valueOf(totalP));
+                    prepare.setString(3, formatiraniDatum);
+                    prepare.executeUpdate();
+                    
+                    alertMes.successMes("Uspjesno ste narucili narudzbu");
+
+
+                }
+                else
+                {
+                    alertMes.failMess("Otkazano");
+                }
 
 
 
 
 
 
+
+
+            }
+
+
+        }
 
 
 

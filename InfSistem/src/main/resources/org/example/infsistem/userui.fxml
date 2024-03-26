@@ -86,7 +86,7 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="uplacenoPolje" layoutX="105.0" layoutY="331.0" prefHeight="26.0" prefWidth="120.0" />
+                        <TextField fx:id="uplacenoPolje" layoutX="105.0" layoutY="331.0" onAction="#uplata" prefHeight="26.0" prefWidth="120.0" />
                         <Label fx:id="UkupnoTekst" layoutX="105.0" layoutY="299.0" prefHeight="22.0" prefWidth="58.0" styleClass="label1" text="0.00">
                            <font>
                               <Font size="13.0" />
@@ -102,9 +102,9 @@
                               <Font size="13.0" />
                            </font>
                         </Label>
-                        <Button fx:id="btnPlati" layoutX="64.0" layoutY="417.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" text="Plati" />
-                        <Button fx:id="btnObrisi" layoutX="14.0" layoutY="481.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Obrisi" />
-                        <Button fx:id="btnRecept" layoutX="134.0" layoutY="481.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Recept" />
+                        <Button fx:id="btnPlati" layoutX="64.0" layoutY="417.0" mnemonicParsing="false" onAction="#plati" prefHeight="26.0" prefWidth="115.0" text="Plati" />
+                        <Button fx:id="btnObrisi" layoutX="14.0" layoutY="481.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Obrisi" />
+                        <Button fx:id="btnRecept" layoutX="134.0" layoutY="481.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Recept" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
