@@ -477,31 +477,10 @@
                 String tesktZaSlanje = "Postovani " +data.username + " dana " + datum + " narucili ste hranu u vrijednosti od "
                         + ukupnaCena;
 
-
-                /// dobijanje maila
-                String sql2 =  "SELECT email FROM korisnici WHERE ime =?";
-                connection =Database.connectDB();
-                prepare = connection.prepareStatement(sql2);
-                prepare.setString(1, data.username);
-                result = prepare.executeQuery();
-
-                if(result.next()){
-
-                    email = result.getString("email");
-                    EmailSender.sendEmail(email, "Porudzbina", tesktZaSlanje);
-                    alertMes.successMes("Racun vam je stigao na mail");
-
-                }
-                else {
-                    System.out.println("Nema mail od korisnika: " + data.username);
-                }
+                Recept.generatePdfFromText(tesktZaSlanje);
 
 
 
-
-
-                EmailSender.sendEmail(email,"Porudzbina",tesktZaSlanje);
-                alertMes.successMes("Racun vam je stigao na mail");
 
 
             }
