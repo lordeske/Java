@@ -144,6 +144,18 @@ public class KarticaProizvodaControllerUser implements Initializable {
              else
             {
 
+                String upitDuplak = "SELECT * FROM porudzbine WHERE ime = ?";
+                connect = Database.connectDB();
+                prepare = connect.prepareStatement(upitDuplak);
+                prepare.setString(1, imeHraneText.getText());
+                result = prepare.executeQuery();
+
+                if(result.next())
+                {
+
+                    alertMes.successMes("Vec postoji prozivod u korpi");
+                    return;
+                }
 
                 //// AKo je sve ok, ima u bazi i korisnik je izabrao umetni u bazu narudzbe ali oduzmi iz baze kupljeni prozivod!!!
                 String upit = "INSERT INTO porudzbine (ime,kolicina,cena,imeCovjeka) VALUES (?,?,?,?)";
@@ -155,18 +167,6 @@ public class KarticaProizvodaControllerUser implements Initializable {
                 total = (qnt* pr);
                 prepare.setString(3, String.valueOf(total));
                 prepare.setString(4, data.username);
-                prepare.executeUpdate();
-
-
-
-                // ali oduzmi iz baze kupljeni prozivod!!!
-
-                String upit2 = "UPDATE proizvodi SET KolicinaProizvoda = ? WHERE IMEProizvoda = ?";
-                connect = Database.connectDB();
-                prepare = connect.prepareStatement(upit2);
-                prepare.setString(1, String.valueOf(isUPStock));
-                prepare.setString(2, imeHraneText.getText());
-
                 prepare.executeUpdate();
 
 

@@ -432,7 +432,7 @@
 
 
 
-            String sql = "DELETE FROM porudzbine WHERE idPrdzine = ? AND cena = ? AND kolicina = ?";
+            String sql = "DELETE FROM porudzbine WHERE ime = ? AND cena = ? AND kolicina = ?";
             connection = Database.connectDB();
             prepare = connection.prepareStatement(sql);
             prepare.setString(1, pr.getIme());
@@ -484,7 +484,6 @@
 
 
             }
-
 
 
         }
@@ -563,11 +562,32 @@
 
                     showData();
                     displayMenuTotal();
+
                     povratText.setText("0.00");
                     uplacenoPolje.setText(null);
 
                     posaljiRecept();
 
+                    // Dobavi sve stavke iz korpe (cart)
+                    String dohvatiStavkeKorpe = "SELECT ime, kolicina FROM porudzbine WHERE imeCovjeka = ?";
+                    prepare = connection.prepareStatement(dohvatiStavkeKorpe);
+                    prepare.setString(1, data.username);
+                    ResultSet resultSet = prepare.executeQuery();
+
+                    // Iteriraj kroz sve stavke iz korpe i umanji količinu proizvoda
+                    while (resultSet.next()) {
+                        String imeProizvoda = resultSet.getString("ime");
+                        int kolicina = resultSet.getInt("kolicina");
+
+                        System.out.println("Umanjujem količinu proizvoda: " + imeProizvoda + ", količina: " + kolicina);
+
+
+                        String smanjiKolicinu = "UPDATE proizvodi SET KolicinaProizvoda = KolicinaProizvoda - ? WHERE IMEProizvoda = ?";
+                        prepare = connection.prepareStatement(smanjiKolicinu);
+                        prepare.setInt(1, kolicina);
+                        prepare.setString(2, imeProizvoda);
+                        prepare.executeUpdate();
+                    }
 
 
 
