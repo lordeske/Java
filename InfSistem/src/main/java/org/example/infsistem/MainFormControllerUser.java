@@ -552,6 +552,42 @@
                     alertMes.successMes("Uspjesno ste narucili narudzbu");
 
 
+
+
+
+
+                    try {
+
+                        // Dohvacamo sve stavke iz korpe
+                        String dohvatiStavkeKorpe = "SELECT ime, kolicina FROM porudzbine WHERE imeCovjeka = ?";
+                        connection = Database.connectDB();
+                        prepare = connection.prepareStatement(dohvatiStavkeKorpe);
+                        prepare.setString(1, data.username);
+                        result = prepare.executeQuery();
+
+
+                        // Smanji stavku u proziovdu!!
+                        while (result.next()) {
+                            String imeProizvoda = result.getString("ime");
+                            int kolicina = result.getInt("kolicina");
+
+                            System.out.println("Umanjujem količinu proizvoda: " + imeProizvoda + ", količina: " + kolicina);
+
+
+                            String smanjiKolicinu = "UPDATE proizvodi SET KolicinaProizvoda = KolicinaProizvoda - ? WHERE IMEProizvoda = ?";
+                            prepare = connection.prepareStatement(smanjiKolicinu);
+                            prepare.setInt(1, kolicina);
+                            prepare.setString(2, imeProizvoda);
+                            prepare.executeUpdate();
+                        }
+
+                    }
+                    catch (SQLException e)
+                    {
+                        e.printStackTrace();
+                    }
+
+
                     ///// OCISTI CART
                     String obrisiNarudbu = "DELETE FROM porudzbine WHERE imeCovjeka = ?";
                     connection = Database.connectDB();
@@ -566,28 +602,9 @@
                     povratText.setText("0.00");
                     uplacenoPolje.setText(null);
 
+
                     posaljiRecept();
 
-                    // Dobavi sve stavke iz korpe (cart)
-                    String dohvatiStavkeKorpe = "SELECT ime, kolicina FROM porudzbine WHERE imeCovjeka = ?";
-                    prepare = connection.prepareStatement(dohvatiStavkeKorpe);
-                    prepare.setString(1, data.username);
-                    ResultSet resultSet = prepare.executeQuery();
-
-                    // Iteriraj kroz sve stavke iz korpe i umanji količinu proizvoda
-                    while (resultSet.next()) {
-                        String imeProizvoda = resultSet.getString("ime");
-                        int kolicina = resultSet.getInt("kolicina");
-
-                        System.out.println("Umanjujem količinu proizvoda: " + imeProizvoda + ", količina: " + kolicina);
-
-
-                        String smanjiKolicinu = "UPDATE proizvodi SET KolicinaProizvoda = KolicinaProizvoda - ? WHERE IMEProizvoda = ?";
-                        prepare = connection.prepareStatement(smanjiKolicinu);
-                        prepare.setInt(1, kolicina);
-                        prepare.setString(2, imeProizvoda);
-                        prepare.executeUpdate();
-                    }
 
 
 
