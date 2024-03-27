@@ -104,7 +104,7 @@
                         </Label>
                         <Button fx:id="btnPlati" layoutX="64.0" layoutY="417.0" mnemonicParsing="false" onAction="#plati" prefHeight="26.0" prefWidth="115.0" text="Plati" />
                         <Button fx:id="btnObrisi" layoutX="14.0" layoutY="481.0" mnemonicParsing="false" onAction="#obrisiIzTabelice" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Obrisi" />
-                        <Button fx:id="btnRecept" layoutX="134.0" layoutY="481.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Recept" />
+                        <Button fx:id="btnRecept" layoutX="134.0" layoutY="481.0" mnemonicParsing="false" onAction="#prikaziRecept" prefHeight="26.0" prefWidth="100.0" styleClass="button33" text="Recept" />
                      </children>
                   </AnchorPane>
                </children></AnchorPane>

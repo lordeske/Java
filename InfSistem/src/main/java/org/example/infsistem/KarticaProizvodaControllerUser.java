@@ -94,7 +94,7 @@ public class KarticaProizvodaControllerUser implements Initializable {
 
         }
 
-        Integer isUPStock = kolicinaUBazi - qnt;
+
 
         if(kolicinaUBazi ==0)
         {
@@ -104,7 +104,7 @@ public class KarticaProizvodaControllerUser implements Initializable {
             prepare.setString(1, "Nedostupan");
             prepare.setString(2, imeHraneText.getText());
             prepare.executeUpdate();
-            System.out.printf("SREDUI");
+
 
         }
 
@@ -172,12 +172,13 @@ public class KarticaProizvodaControllerUser implements Initializable {
 
 
 
+
+
+
                 AlertMes alertMes = new AlertMes();
                 alertMes.successMes("Uspjesno dodato");
 
 
-
-                // Referenca na MainFormControllerUser
 
 
 

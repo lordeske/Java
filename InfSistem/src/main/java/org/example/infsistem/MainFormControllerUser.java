@@ -16,6 +16,9 @@
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
 
+    import javax.swing.*;
+    import java.awt.Desktop;
+
     import java.io.File;
     import java.io.IOException;
     import java.net.URL;
@@ -638,7 +641,30 @@
 
 
 
+        public void prikaziRecept() throws IOException {
 
+
+
+            if (data.poslednjiRacun != null) {
+                File file = new File(data.poslednjiRacun);
+                try {
+                    Desktop.getDesktop().open(file);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+
+                System.out.println("Niste generisali recept.");
+            }
+
+
+
+
+
+
+
+
+        }
 
 
 

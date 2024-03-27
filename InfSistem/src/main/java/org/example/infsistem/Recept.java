@@ -19,6 +19,8 @@ public class Recept {
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String outputFilePath = outputDirectory + "recept_" + timestamp + ".pdf";
 
+            data.poslednjiRacun = outputFilePath;
+
             PdfWriter writer = new PdfWriter(outputFilePath);
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);

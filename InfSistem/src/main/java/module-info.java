@@ -5,6 +5,7 @@ module org.example.infsistem {
     requires java.mail;
     requires layout;
     requires kernel;
+    requires java.desktop;
 
 
     opens org.example.infsistem to javafx.fxml;
