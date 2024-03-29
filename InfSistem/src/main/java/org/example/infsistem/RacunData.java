@@ -12,6 +12,7 @@ public class RacunData {
     private Double ukupnaCena;
 
     private String datum;
+    private String hrana;
 
 
     public Integer getIdNarudzbe() {
@@ -30,10 +31,16 @@ public class RacunData {
         return datum;
     }
 
-    public RacunData(Integer idNarudzbe, String imeKupca, Double ukupnaCena, String datum) {
+    public RacunData(Integer idNarudzbe, String imeKupca, Double ukupnaCena, String datum, String hrana) {
         this.idNarudzbe = idNarudzbe;
         this.imeKupca = imeKupca;
         this.ukupnaCena = ukupnaCena;
         this.datum = datum;
+        this.hrana = hrana;
+
+    }
+
+    public String getHrana() {
+        return hrana;
     }
 }

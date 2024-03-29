@@ -12,7 +12,7 @@ import java.time.format.DateTimeFormatter;
 
 public class Recept {
 
-    private static final String outputDirectory = "C:\\Users\\Strix\\Desktop\\Prog\\Java\\Java\\InfSistem\\src\\main\\resources\\Racuni\\";
+    private static final String outputDirectory = "C:\\Users\\Strix\\Desktop\\Prog\\Java\\Projekat\\Java\\InfSistem\\src\\main\\resources\\Racuni";
 
     public static void generatePdfFromText(String text) {
         try {

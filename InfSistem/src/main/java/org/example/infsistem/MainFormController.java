@@ -25,12 +25,18 @@
     public class MainFormController implements Initializable {
 
         @FXML
+        private ScrollPane MeniScrollPane;
+        @FXML
+        private GridPane gridPaneNarduzbe;
+
+        //////////////////////////////////////////
+
+        @FXML
         private Button azuriraj;
         @FXML
         private GridPane MeniGridPane;
 
-        @FXML
-        private ScrollPane ScrollPaneNarudzbe;
+
 
         @FXML
         private AnchorPane formaNarudzbe;
@@ -240,7 +246,7 @@
             formaPocetna.setVisible(true);
             FormaInvertar.setVisible(false);
             FormaMeni.setVisible(false);
-
+            formaNarudzbe.setVisible(false);
 
 
 
@@ -355,7 +361,66 @@
             return cardListData;
         }
 
+        ObservableList<RacunData> racunDataList = FXCollections.observableArrayList();
 
+        public ObservableList<RacunData> meniGetRacun() throws SQLException {
+            ObservableList<RacunData> racunDataList = FXCollections.observableArrayList();
+
+
+            String sql = "SELECT * FROM racun";
+            connection = Database.connectDB();
+
+            prepare = connection.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+            RacunData racunData;
+
+
+            while (result.next())
+            {
+                racunData = new RacunData(result.getInt("idNarudzbe"),result.getString("imeKupca"),
+                        result.getDouble("ukupnaCena"),result.getString("datum"),result.getString("hrana"));
+
+                racunDataList.add(racunData);
+            }
+
+            return racunDataList;
+
+        }
+
+
+        public void popuniRacun() throws SQLException, IOException {
+            gridPaneNarduzbe.getChildren().clear();
+
+            racunDataList.clear();
+            racunDataList.addAll(meniGetRacun());
+
+            Integer col = 0;
+            Integer row = 0;
+
+            gridPaneNarduzbe.getRowConstraints().clear();
+            gridPaneNarduzbe.getColumnConstraints().clear();
+
+
+            for(Integer i=0 ; i < racunDataList.size(); i++){
+                FXMLLoader load = new FXMLLoader();
+                load.setLocation(getClass().getResource("karticaRacuna.fxml"));
+                AnchorPane pane = load.load();
+                KarticaNarudzbi kardC = load.getController();
+                kardC.setDataRacun(racunDataList.get(i));
+                gridPaneNarduzbe.add(pane,col++,row);
+
+                if(col==3)
+                {
+                    col=0;
+                    row+=1;
+
+                }
+
+            }
+
+
+        }
 
         public void popuniMeni() throws SQLException, IOException {
             MeniGridPane.getChildren().clear();
@@ -401,24 +466,38 @@
 
 
 
+        public void displayMeni() throws SQLException, IOException {
+
+            formaPocetna.setVisible(false);
+            FormaInvertar.setVisible(false);
+            FormaMeni.setVisible(true);
+            formaNarudzbe.setVisible(false);
+
+        }
+
 
         public void displayInvertar()
         {
             formaPocetna.setVisible(false);
             FormaInvertar.setVisible(true);
             FormaMeni.setVisible(false);
+            formaNarudzbe.setVisible(false);
 
 
         }
 
-        public void displayMeni() throws SQLException, IOException {
-
+        public void displayNarudzbe()
+        {
             formaPocetna.setVisible(false);
             FormaInvertar.setVisible(false);
-            FormaMeni.setVisible(true);
+            FormaMeni.setVisible(false);
+            formaNarudzbe.setVisible(true);
 
 
         }
+
+
+
 
         public void dodajStatuse()
         {
@@ -641,6 +720,7 @@
             try {
                 prikaziTabeluData();
                 popuniMeni();
+                popuniRacun();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
