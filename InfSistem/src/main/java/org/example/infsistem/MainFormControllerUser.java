@@ -398,6 +398,7 @@
         }
 
         public double totalP;
+
         public void displayMenuTotal() throws SQLException {
 
             String sql = "SELECT SUM(cena) AS ukupna_cijena FROM porudzbine WHERE imeCovjeka = ?";
@@ -464,8 +465,8 @@
 
         public void  posaljiRecept() throws SQLException {
 
-            /// dobijanje racuna
-            String sql =  "SELECT * FROM racun WHERE imeKupca =?";
+            /// dobijanje racuna sa zadnjim ID zato to je taj koji smo narucili!!! a
+            String sql =  "SELECT * FROM racun WHERE idNarudzbe = (SELECT MAX(idNarudzbe) FROM racun WHERE imeKupca = ?)";
 
             connection =Database.connectDB();
             prepare = connection.prepareStatement(sql);
@@ -476,11 +477,12 @@
             {
                 String datum = result.getString("datum");
                 String ukupnaCena = result.getString("ukupnaCena");
+                String hrana = result.getString("hrana");
 
-                String tesktZaSlanje = "Postovani " +data.username + " dana " + datum + " narucili ste hranu u vrijednosti od "
-                        + ukupnaCena;
 
-                Recept.generatePdfFromText(tesktZaSlanje);
+
+
+                Recept.generatePdfFromText("Dana "+datum +" narucio si stvari "+ hrana +" u vrijednosti od " + ukupnaCena);
 
 
 
@@ -519,7 +521,7 @@
         }
 
 
-
+        private String hrana= "";
         public void plati() throws SQLException {
             if (totalP == 0) {
                 alertMes.failMess("Narucite prozivod prvo");
@@ -541,16 +543,36 @@
 
                 if(opt.get().equals(ButtonType.OK))
                 {
+                    String select = "SELECT * FROM porudzbine WHERE imeCovjeka = ?";
+                    connection = Database.connectDB();
+                    prepare = connection.prepareStatement(select);
+                    prepare.setString(1, data.username);
+                    result =prepare.executeQuery();
+
+                    while (result.next()) {
+                        String imeHrane= result.getString("ime");
+                        Integer kolikoPuta = result.getInt("kolicina");
+
+                        if (imeHrane != null) {
+                            hrana += imeHrane + " x " + kolikoPuta + ", ";
+                        }
+                    }
+
+
+
+
+
                     LocalDate trenutniDatum = LocalDate.now();
                     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
                     String formatiraniDatum = trenutniDatum.format(formatter);
 
-                    String plati  = "INSERT INTO racun (imeKupca,ukupnaCena, datum) VALUES (?,?,?)";
+                    String plati  = "INSERT INTO racun (imeKupca,ukupnaCena, datum, hrana) VALUES (?,?,?,?)";
                     connection = Database.connectDB();
                     prepare = connection.prepareStatement(plati);
                     prepare.setString(1, data.username);
                     prepare.setString(2, String.valueOf(totalP));
                     prepare.setString(3, formatiraniDatum);
+                    prepare.setString(4, hrana);
                     prepare.executeUpdate();
                     alertMes.successMes("Uspjesno ste narucili narudzbu");
 
@@ -582,6 +604,8 @@
                             prepare.setInt(1, kolicina);
                             prepare.setString(2, imeProizvoda);
                             prepare.executeUpdate();
+
+                            hrana= "";
                         }
 
                     }
@@ -643,7 +667,7 @@
 
         public void prikaziRecept() throws IOException {
 
-
+            /// Samo obezbjediti da raucn mora biti kupljen prvi put posle ce uvojek zadnji praviti XD
 
             if (data.poslednjiRacun != null) {
                 File file = new File(data.poslednjiRacun);

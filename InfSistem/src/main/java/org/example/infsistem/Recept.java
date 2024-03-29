@@ -16,7 +16,7 @@ public class Recept {
 
     public static void generatePdfFromText(String text) {
         try {
-            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmssSSS"));
             String outputFilePath = outputDirectory + "recept_" + timestamp + ".pdf";
 
             data.poslednjiRacun = outputFilePath;

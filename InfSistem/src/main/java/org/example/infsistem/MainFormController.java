@@ -30,6 +30,12 @@
         private GridPane MeniGridPane;
 
         @FXML
+        private ScrollPane ScrollPaneNarudzbe;
+
+        @FXML
+        private AnchorPane formaNarudzbe;
+
+        @FXML
         private Button btnInvertar;
 
         @FXML

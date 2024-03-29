@@ -157,7 +157,7 @@ public class KarticaProizvodaControllerUser implements Initializable {
                     return;
                 }
 
-                //// AKo je sve ok, ima u bazi i korisnik je izabrao umetni u bazu narudzbe ali oduzmi iz baze kupljeni prozivod!!!
+                //// AKo je sve ok, ima u bazi i korisnik je izabrao umetni u bazu narudzbe
                 String upit = "INSERT INTO porudzbine (ime,kolicina,cena,imeCovjeka) VALUES (?,?,?,?)";
 
                 connect = Database.connectDB();
