@@ -486,12 +486,12 @@
 
         }
 
-        public void displayNarudzbe()
-        {
+        public void displayNarudzbe() throws SQLException, IOException {
             formaPocetna.setVisible(false);
             FormaInvertar.setVisible(false);
             FormaMeni.setVisible(false);
             formaNarudzbe.setVisible(true);
+            popuniRacun();
 
 
         }
