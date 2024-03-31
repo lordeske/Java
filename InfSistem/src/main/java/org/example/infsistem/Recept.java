@@ -25,10 +25,10 @@ public class Recept {
             PdfDocument pdf = new PdfDocument(writer);
             Document document = new Document(pdf);
 
-            // Dodavanje teksta u dokument
+
             document.add(new Paragraph(text));
 
-            // Zatvaranje dokumenta
+
             document.close();
 
             System.out.println("PDF datoteka je uspješno generirana na putanji: " + outputFilePath);

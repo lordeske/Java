@@ -97,6 +97,7 @@
         @FXML
         private Button dodaj;
 
+
         @FXML
         private AnchorPane formaPocetna;
 
@@ -237,6 +238,7 @@
         {
             formaPocetna.setVisible(true);
             FormaMeni.setVisible(false);
+
 
 
 
@@ -575,6 +577,8 @@
                     prepare.setString(4, hrana);
                     prepare.executeUpdate();
                     alertMes.successMes("Uspjesno ste narucili narudzbu");
+
+                    data.zarada +=  totalP;
 
 
 

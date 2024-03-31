@@ -28,6 +28,8 @@
         private ScrollPane MeniScrollPane;
         @FXML
         private GridPane gridPaneNarduzbe;
+        @FXML
+        private Label ukupnaZaradaText;
 
         //////////////////////////////////////////
 
@@ -247,6 +249,7 @@
             FormaInvertar.setVisible(false);
             FormaMeni.setVisible(false);
             formaNarudzbe.setVisible(false);
+            displayUkupnoText();
 
 
 
@@ -359,6 +362,16 @@
             }
 
             return cardListData;
+        }
+
+        public void displayUkupnoText() {
+
+            ukupnaZaradaText.setText(data.zarada == 0.0 ? "0.00" : String.valueOf(data.zarada));
+
+
+
+
+
         }
 
         ObservableList<RacunData> racunDataList = FXCollections.observableArrayList();
@@ -721,6 +734,7 @@
                 prikaziTabeluData();
                 popuniMeni();
                 popuniRacun();
+                displayUkupnoText();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

@@ -36,7 +36,7 @@
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css" visible="false">
+            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
                <children>
                   <AnchorPane layoutX="66.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
                      <children>
@@ -49,7 +49,7 @@
                      <children>
                         <FontAwesomeIconView glyphName="MONEY" layoutX="123.0" layoutY="89.0" size="77" styleClass="fontAwesomeIconView" text="" />
                         <Label layoutX="81.0" layoutY="158.0" text="Ukupna zarada" />
-                        <Label layoutX="132.0" layoutY="124.0" text="0.0" />
+                        <Label fx:id="ukupnaZaradaText" layoutX="132.0" layoutY="124.0" text="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="66.0" layoutY="275.0" prefHeight="238.0" prefWidth="595.0" styleClass="block" />
@@ -114,7 +114,7 @@
                      </content>
                   </ScrollPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="formaNarudzbe" layoutX="213.0" prefHeight="560.0" prefWidth="710.0">
+            <AnchorPane fx:id="formaNarudzbe" layoutX="213.0" prefHeight="560.0" prefWidth="710.0" visible="false">
                <children>
                   <ScrollPane fx:id="ScrollPaneNarudzbe" layoutX="14.0" layoutY="6.0" prefHeight="538.0" prefWidth="690.0">
                      <content>

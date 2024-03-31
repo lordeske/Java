@@ -9,6 +9,8 @@ public class data {
     public static String poslednjiRacun;
 
 
+    public static double zarada;
+
 
 
 
