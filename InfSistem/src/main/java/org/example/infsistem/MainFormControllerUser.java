@@ -35,6 +35,8 @@
         private Label UkupnoTekst;
         @FXML
         private Button btnObrisi;
+        @FXML
+        private Button editBtn;
 
 
         @FXML
@@ -186,6 +188,27 @@
 
 
 
+
+        public void editUserShow() throws IOException {
+
+            Parent root = FXMLLoader.load(getClass().getResource("promjenaSifre.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+
+
+            stage.initOwner(btnPocetna.getScene().getWindow());  /// dok ovaj radi ne mozes nista
+
+            btnPocetna.getScene().getRoot().setOpacity(0.5); // zamucujem pozaadinu
+
+            stage.setOnCloseRequest(event -> {
+                // Vraćanje normalne opaciteta pozadine primarnog prozora kada se dijaloški prozor zatvori
+                btnPocetna.getScene().getRoot().setOpacity(1);
+                btnPocetna.getScene().getRoot().setDisable(false); /// lock
+            });
+
+
+            stage.show();
+        }
 
 
         public void displayUser()

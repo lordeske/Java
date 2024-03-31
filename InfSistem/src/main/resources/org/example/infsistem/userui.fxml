@@ -30,6 +30,7 @@
                         <Button fx:id="btnNarudzbine" layoutX="43.0" layoutY="274.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" text="Narudzbe" />
                         <Button fx:id="btnInvertar" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" text="Invertar" />
                         <Button fx:id="odjava" layoutX="42.0" layoutY="476.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="115.0" text="Odjava" />
+                        <Button fx:id="editBtn" layoutX="89.0" layoutY="89.0" mnemonicParsing="false" onAction="#editUserShow" text="Edit" />
                      </children>
                   </AnchorPane>
                </left>
