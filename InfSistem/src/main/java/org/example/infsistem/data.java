@@ -1,5 +1,7 @@
 package org.example.infsistem;
 
+import javafx.scene.control.Button;
+
 public class data {
 
 
@@ -10,6 +12,8 @@ public class data {
 
 
     public static double zarada;
+
+
 
 
 

@@ -16,7 +16,7 @@
             <TextField fx:id="trenutnaSifra" layoutX="47.0" layoutY="132.0" promptText="trenutna sifra" />
             <TextField fx:id="novaReSifra" layoutX="47.0" layoutY="214.0" promptText="ponovite novu sifru" />
             <TextField fx:id="novaSifra" layoutX="47.0" layoutY="176.0" promptText="nova sifra" />
-            <Button fx:id="promeniSifruBTN" layoutX="88.0" layoutY="260.0" mnemonicParsing="false" text="PROMENI" />
+            <Button fx:id="promeniSifruBTN" layoutX="88.0" layoutY="260.0" onAction="#promeni" mnemonicParsing="false" text="PROMENI" />
          </children>
       </AnchorPane>
    </children>

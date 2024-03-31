@@ -184,7 +184,11 @@
 
 
 
-        private ObservableList <ProductData> InvListData;
+
+
+
+
+
 
 
 
@@ -198,17 +202,20 @@
 
             stage.initOwner(btnPocetna.getScene().getWindow());  /// dok ovaj radi ne mozes nista
 
-            btnPocetna.getScene().getRoot().setOpacity(0.5); // zamucujem pozaadinu
+           // btnPocetna.getScene().getRoot().setOpacity(0.5); // zamucujem pozaadinu
 
-            stage.setOnCloseRequest(event -> {
-                // Vraćanje normalne opaciteta pozadine primarnog prozora kada se dijaloški prozor zatvori
-                btnPocetna.getScene().getRoot().setOpacity(1);
-                btnPocetna.getScene().getRoot().setDisable(false); /// lock
-            });
+           // stage.setOnCloseRequest(event -> {
 
+             //  btnPocetna.getScene().getRoot().setOpacity(1);
+           //    btnPocetna.getScene().getRoot().setDisable(false); /// lock
+         // });
 
             stage.show();
         }
+
+
+
+
 
 
         public void displayUser()
