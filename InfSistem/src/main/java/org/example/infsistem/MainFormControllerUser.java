@@ -246,11 +246,66 @@
         }
 
 
-        public void posaljiOcenu()
-        {
-            
+        public void posaljiOcenu() throws SQLException {
+
+            RadioButton izabraniItem = (RadioButton) grupa.getSelectedToggle();
+
+            if(izabraniItem == null)
+            {
+                alertMes.failMess("Morate oceniti prozivod");
+                return;
+
+            }
+            else
+            {
+                String sql1 = "SELECT * FROM recenzije WHERE imeKorisnika = ?";
+                connection = Database.connectDB();
+                prepare = connection.prepareStatement(sql1);
+                prepare.setString(1, data.username);
+                result  =prepare.executeQuery();
+
+                if(result.next())
+                {
+                    alertMes.failMess("Vec ste dali ocenu");
+                    return;
+                }
+                else
+                {
+                    String vrijednost = izabraniItem.getText();
+
+                    String sql = "INSERT INTO recenzije (ocena, imeKorisnika) VALUES (?, ?)";
+
+                    System.out.printf(vrijednost, data.username);
+
+                    connection = Database.connectDB();
+                    prepare = connection.prepareStatement(sql);
+                    prepare.setString(1, vrijednost);
+                    prepare.setString(2, data.username);
+                    Integer izlaz = prepare.executeUpdate();
+
+                    if(izlaz > 0)
+                    {
+                        alertMes.failMess("Hvala na poverenju");
+                        grupa.getToggles().forEach(toggle -> {
+                            if (toggle.isSelected()) {
+                                toggle.setSelected(false);
+                            }
+                        });
+                        return;
+                    }
+                }
 
 
+
+
+
+
+
+
+
+
+
+            }
 
 
 
