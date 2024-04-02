@@ -30,7 +30,25 @@
 
     public class MainFormControllerUser implements Initializable {
 
+        ///// recenzije
 
+        @FXML
+        private Button btnPosaljiOcenu;
+        @FXML
+        private ToggleGroup grupa;
+        @FXML
+        private RadioButton ocena1;
+        @FXML
+        private RadioButton ocena2;
+        @FXML
+        private RadioButton ocena3;
+
+        @FXML
+        private RadioButton ocena4;
+        @FXML
+        private RadioButton ocena5;
+
+        //////
         @FXML
         private Label UkupnoTekst;
         @FXML
@@ -102,13 +120,20 @@
 
         @FXML
         private AnchorPane formaPocetna;
+        @FXML
+        private AnchorPane FormaOceniNas;
 
         @FXML
         private AnchorPane formaZaposleni;
         @FXML
         private AnchorPane FormaInvertar;
- @FXML
+        @FXML
         private AnchorPane FormaMeni;
+
+
+        @FXML
+        private Button btnOceniNas;
+
 
 
         @FXML
@@ -128,6 +153,7 @@
 
         @FXML
         private Button odjava;
+
 
 
         @FXML
@@ -187,7 +213,13 @@
 
 
 
+        public void displayOceniNas()
+        {
+            formaPocetna.setVisible(false);
+            FormaMeni.setVisible(false);
+            FormaOceniNas.setVisible(true);
 
+        }
 
 
 
@@ -214,7 +246,15 @@
         }
 
 
+        public void posaljiOcenu()
+        {
+            
 
+
+
+
+
+        }
 
 
 
@@ -268,6 +308,7 @@
         {
             formaPocetna.setVisible(true);
             FormaMeni.setVisible(false);
+            FormaOceniNas.setVisible(false);
 
 
 
@@ -355,19 +396,12 @@
 
 
 
-        public void displayInvertar()
-        {
-            formaPocetna.setVisible(false);
 
-            FormaMeni.setVisible(false);
-
-
-        }
 
         public void displayMeni() throws SQLException, IOException {
 
             formaPocetna.setVisible(false);
-
+            FormaOceniNas.setVisible(false);
             FormaMeni.setVisible(true);
             showData();
             displayMenuTotal();
