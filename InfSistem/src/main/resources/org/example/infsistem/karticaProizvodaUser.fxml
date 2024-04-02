@@ -15,12 +15,12 @@
          <children>
             <HBox prefHeight="37.0" prefWidth="224.0">
                <children>
-                  <Label fx:id="imeHraneText" prefHeight="18.0" prefWidth="74.0" text="Ime Hrane">
+                  <Label fx:id="imeHraneText" prefHeight="18.0" prefWidth="74.0" styleClass="bijela4" stylesheets="@../../../Desing/zaAdmina.css" text="Ime Hrane">
                      <HBox.margin>
                         <Insets left="35.0" top="12.0" />
                      </HBox.margin>
                   </Label>
-                  <Label fx:id="CenaHraneText" prefHeight="18.0" prefWidth="70.0" text="Label">
+                  <Label fx:id="CenaHraneText" prefHeight="18.0" prefWidth="70.0" styleClass="bijela4" stylesheets="@../../../Desing/zaAdmina.css" text="Label">
                      <HBox.margin>
                         <Insets left="10.0" top="12.0" />
                      </HBox.margin>
@@ -38,12 +38,12 @@
                      <children>
                         <Spinner fx:id="brojacKolicine" prefHeight="26.0" prefWidth="100.0">
                            <HBox.margin>
-                              <Insets left="10.0" top="3.0" />
+                              <Insets left="20.0" top="3.0" />
                            </HBox.margin>
                         </Spinner>
-                        <Button fx:id="btnDodajUkasu" mnemonicParsing="false" onAction="#UmetniUKasu" prefHeight="26.0" prefWidth="56.0" text="Dodaj">
+                        <Button fx:id="btnDodajUkasu" mnemonicParsing="false" onAction="#UmetniUKasu" prefHeight="26.0" prefWidth="56.0" styleClass="kartica-round4" stylesheets="@../../../Desing/zaAdmina.css" text="Dodaj">
                            <HBox.margin>
-                              <Insets left="8.0" top="3.0" />
+                              <Insets left="10.0" top="3.0" />
                            </HBox.margin>
                         </Button>
                      </children>

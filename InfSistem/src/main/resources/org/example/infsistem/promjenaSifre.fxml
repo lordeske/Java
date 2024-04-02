@@ -9,14 +9,14 @@
 
 <StackPane prefHeight="340.0" prefWidth="243.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infsistem.PromenaSifre">
    <children>
-      <AnchorPane id="login_form" fx:id="promjenaForma" prefHeight="452.0" prefWidth="309.0">
+      <AnchorPane id="login_form" fx:id="promjenaForma" prefHeight="452.0" prefWidth="309.0" styleClass="Panel-card" stylesheets="@../../../Desing/zaAdmina.css">
          <children>
-            <FontAwesomeIconView glyphName="USER" layoutX="104.0" layoutY="57.0" size="50" />
-            <Label layoutX="75.0" layoutY="70.0" prefHeight="18.0" prefWidth="99.0" text="Promijenite Sifru" />
-            <TextField fx:id="trenutnaSifra" layoutX="47.0" layoutY="132.0" promptText="trenutna sifra" />
-            <TextField fx:id="novaReSifra" layoutX="47.0" layoutY="214.0" promptText="ponovite novu sifru" />
-            <TextField fx:id="novaSifra" layoutX="47.0" layoutY="176.0" promptText="nova sifra" />
-            <Button fx:id="promeniSifruBTN" layoutX="88.0" layoutY="260.0" onAction="#promeni" mnemonicParsing="false" text="PROMENI" />
+            <FontAwesomeIconView glyphName="USER" layoutX="104.0" layoutY="57.0" size="50" styleClass="fontAwesomeIconView" />
+            <Label layoutX="61.0" layoutY="71.0" prefHeight="22.0" prefWidth="133.0" styleClass="bijela" text="Promijenite Sifru" />
+            <TextField fx:id="trenutnaSifra" layoutX="47.0" layoutY="132.0" promptText="trenutna sifra" styleClass="box-pretraga" />
+            <TextField fx:id="novaReSifra" layoutX="47.0" layoutY="207.0" promptText="ponovite novu sifru" styleClass="box-pretraga" />
+            <TextField fx:id="novaSifra" layoutX="47.0" layoutY="170.0" promptText="nova sifra" styleClass="box-pretraga" />
+            <Button fx:id="promeniSifruBTN" layoutX="82.0" layoutY="250.0" mnemonicParsing="false" onAction="#promeni" styleClass="sale" text="PROMENI" />
          </children>
       </AnchorPane>
    </children>

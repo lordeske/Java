@@ -56,6 +56,11 @@
     -fx-background-radius: 30;
     -fx-background-color : rgba(241, 108, 49, 1);
 }
+.kartica-round4 {
+
+    -fx-background-radius: 30;
+    -fx-background-color : rgba(241, 108, 49, 0.8);
+}
 .kartica-round1 {
 
     -fx-background-radius: 30;
@@ -86,11 +91,6 @@
     -fx-background-color: white; /* Bijela pozadina */
      -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Crna sjena */
 
-
-
-
-
-
 }
 
 
@@ -110,6 +110,10 @@
     -fx-font-weight : bold;
 
 
+}
+
+.fontAwesomeIconView {
+    -fx-fill: #FFFFFF   ; /* Change the color of the icon */
 }
 
 
