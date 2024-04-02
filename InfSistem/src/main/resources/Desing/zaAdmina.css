@@ -32,6 +32,80 @@
 }
 
 
+.PadajucaBox{  //// PROVIDNO DUGME
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-background-radius: 30;
+    -fx-text-fill: white;
+    -fx-font-weight : bold;
+}
+
+.PadajucaBox:hover {
+  -fx-background-color: rgba(255,255,255,0.6);
+
+}
+
+
+.Panel-card{   /// NARANDZASTO
+
+    -fx-background-color: #F16C31;
+
+}
+
+.kartica-round {
+
+    -fx-background-radius: 30;
+    -fx-background-color : rgba(241, 108, 49, 1);
+}
+.kartica-round1 {
+
+    -fx-background-radius: 30;
+    -fx-background-color : rgba(241, 108, 49, 1);
+}
+
+
+.tabela {
+
+    -fx-font-size: 15px; /* Change font size */
+    -fx-background-radius: 5;
+
+
+}
+
+.bijela {
+
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 15px;
+    -fx-font-weight : bold;
+
+}
+
+.meniadmin {
+
+    -fx-padding: 10px;
+    -fx-background-radius: 20;
+    -fx-background-color: white; /* Bijela pozadina */
+     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0, 0, 0); /* Crna sjena */
+
+
+
+
+
+
+}
+
+
+.bijela2 {
+
+    -fx-text-fill: #0000;
+    -fx-font-size: 15px;
+    -fx-font-weight : bold;
+
+
+}
+
+
+
+
 
 
 

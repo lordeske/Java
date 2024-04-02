@@ -32,7 +32,7 @@ public class KarticaProizvodaController implements Initializable {
 
         imeHraneText.setText(prodData.getIme());
         CenaHraneText.setText(String.valueOf(prodData.getCena()));
-        image =new Image("File:" + prodData.getSlika(),190,94,false,true);
+        image =new Image("File:" + prodData.getSlika(),100,50,false,true);
         SlikaHrane.setImage(image);
 
 

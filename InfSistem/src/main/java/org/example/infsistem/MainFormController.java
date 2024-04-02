@@ -5,6 +5,7 @@
     import javafx.fxml.FXML;
     import javafx.fxml.FXMLLoader;
     import javafx.fxml.Initializable;
+    import javafx.geometry.Insets;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.scene.control.*;
@@ -13,6 +14,7 @@
     import javafx.scene.image.ImageView;
     import javafx.scene.layout.AnchorPane;
     import javafx.scene.layout.GridPane;
+    import javafx.scene.layout.Region;
     import javafx.stage.FileChooser;
     import javafx.stage.Stage;
 
@@ -463,8 +465,17 @@
                     row+=1;
 
                 }
+                MeniGridPane.setMinWidth(Region.USE_COMPUTED_SIZE);
+                MeniGridPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                MeniGridPane.setMaxWidth(Region.USE_PREF_SIZE);
 
-                System.out.printf("OBRISANOO");
+                MeniGridPane.setMinHeight(Region.USE_COMPUTED_SIZE);
+                MeniGridPane.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                MeniGridPane.setMaxHeight(Region.USE_PREF_SIZE);
+
+                GridPane.setMargin(pane,new Insets(18));
+
+
 
 
 
