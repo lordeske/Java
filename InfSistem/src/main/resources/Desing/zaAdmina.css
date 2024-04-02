@@ -96,13 +96,21 @@
 
 .bijela2 {
 
-    -fx-text-fill: #0000;
+    -fx-text-fill: #000000;
     -fx-font-size: 15px;
     -fx-font-weight : bold;
 
 
 }
 
+.bijela4 {
+
+    -fx-text-fill: #000000;
+    -fx-font-size: 13.5px;
+    -fx-font-weight : bold;
+
+
+}
 
 
 

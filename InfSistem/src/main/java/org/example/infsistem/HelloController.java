@@ -312,58 +312,19 @@ public class HelloController {
 
                 if (result.next())
                 {
-                    alert.successMes("Lovan si, cekajte povezivanje na server");
+
                     data.username = login_username.getText();
-
-
-
-
-
-                    PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
-                    pause.setOnFinished(event -> {
-                        try {
-                            userDash();
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
-                    pause.play();
-
-
-
-
-
-
+                    userDash();
 
                     return;
                 }
                 else if  (result1.next())
                 {
-                    alert.successMes("Lovan si, cekajte povezivanje na server");
+
 
 
                     data.username = login_username.getText();
-
-
-
-
-
-                    PauseTransition pause = new PauseTransition(Duration.seconds(1)); // Pauza od 1 sekunde
-                    pause.setOnFinished(event -> {
-                        try {
-                            adminDash();
-
-                        } catch (IOException e) {
-                            throw new RuntimeException(e);
-                        }
-                    });
-                    pause.play();
-
-
-
-
-
+                    adminDash();
 
 
                     return;

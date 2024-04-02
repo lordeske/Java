@@ -423,7 +423,9 @@
                 AnchorPane pane = load.load();
                 KarticaNarudzbi kardC = load.getController();
                 kardC.setDataRacun(racunDataList.get(i));
-                gridPaneNarduzbe.add(pane,col++,row);
+
+
+
 
                 if(col==3)
                 {
@@ -431,6 +433,18 @@
                     row+=1;
 
                 }
+
+                gridPaneNarduzbe.add(pane,col++,row);
+
+
+                gridPaneNarduzbe.setMinWidth(Region.USE_COMPUTED_SIZE);
+                gridPaneNarduzbe.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                gridPaneNarduzbe.setMaxWidth(Region.USE_PREF_SIZE);
+
+                gridPaneNarduzbe.setMinHeight(Region.USE_COMPUTED_SIZE);
+                gridPaneNarduzbe.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                gridPaneNarduzbe.setMaxHeight(Region.USE_PREF_SIZE);
+                GridPane.setMargin(pane,new Insets(18));
 
             }
 
