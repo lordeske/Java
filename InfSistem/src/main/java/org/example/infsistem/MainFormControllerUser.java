@@ -7,6 +7,7 @@
     import javafx.fxml.Initializable;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
+    import javafx.scene.chart.PieChart;
     import javafx.scene.control.*;
     import javafx.scene.control.cell.PropertyValueFactory;
     import javafx.scene.image.Image;
@@ -42,6 +43,9 @@
         private RadioButton ocena2;
         @FXML
         private RadioButton ocena3;
+
+        @FXML
+        private PieChart pita =pita = new PieChart();;
 
         @FXML
         private RadioButton ocena4;
@@ -209,7 +213,31 @@
         AlertMes alertMes = new AlertMes();
 
 
+        public void prikaziChart() throws SQLException {
 
+            String sql =  "SELECT ocena, COUNT(*) as count FROM recenzije GROUP by ocena";
+
+            connection = Database.connectDB();
+            prepare = connection.prepareStatement(sql);
+            result = prepare.executeQuery();
+
+
+            ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList();
+
+
+            while (result.next())
+            {
+
+                Integer ocena = result.getInt("ocena");
+                Integer count = result.getInt("count");
+
+                pieChartData.add(new PieChart.Data(String.valueOf(ocena), count));
+
+            }
+
+
+            pita.setData(pieChartData);
+        }
 
 
 
@@ -286,6 +314,8 @@
                     if(izlaz > 0)
                     {
                         alertMes.failMess("Hvala na poverenju");
+                        prikaziChart();
+
                         grupa.getToggles().forEach(toggle -> {
                             if (toggle.isSelected()) {
                                 toggle.setSelected(false);
@@ -826,6 +856,7 @@
                 popuniMeni();
                 showData();
                 displayMenuTotal();
+                prikaziChart();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

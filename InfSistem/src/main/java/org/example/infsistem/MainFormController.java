@@ -8,6 +8,7 @@
     import javafx.geometry.Insets;
     import javafx.scene.Parent;
     import javafx.scene.Scene;
+    import javafx.scene.chart.PieChart;
     import javafx.scene.control.*;
     import javafx.scene.control.cell.PropertyValueFactory;
     import javafx.scene.image.Image;
@@ -41,6 +42,8 @@
         private GridPane MeniGridPane;
 
 
+        @FXML
+        private PieChart pita;
 
         @FXML
         private AnchorPane formaNarudzbe;
@@ -196,6 +199,37 @@
 
 
         }
+
+
+        public void pitaFunc() throws SQLException {
+
+            String SQL = "SELECT ocena, COUNT(*) as count GROUP BY ocena";
+            connection = Database.connectDB();
+            prepare = connection.prepareStatement(SQL);
+            result = prepare.executeQuery();
+
+
+            ObservableList<PieChart.Data> PieChartData = FXCollections.observableArrayList();
+
+
+
+            while (result.next())
+            {
+                Integer ocena = result.getInt("ocena");
+                Integer count = result.getInt("count");
+
+
+                PieChartData.add(new PieChart.Data(String.valueOf(ocena),count));
+
+
+            }
+
+            pita.setData(PieChartData);
+
+
+
+        }
+
 
 
 
@@ -760,6 +794,7 @@
                 popuniMeni();
                 popuniRacun();
                 displayUkupnoText();
+                pitaFunc();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);
