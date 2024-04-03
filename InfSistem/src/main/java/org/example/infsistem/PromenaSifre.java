@@ -43,80 +43,46 @@ public class PromenaSifre {
 
 
     public void promeni() throws SQLException {
-
-        if(trenutnaSifra.getText().isEmpty() || novaReSifra.getText().isEmpty() || novaSifra.getText().isEmpty())
-        {
+        if (trenutnaSifra.getText().isEmpty() || novaReSifra.getText().isEmpty() || novaSifra.getText().isEmpty()) {
             alertMes.failMess("Unesite Podatke");
             return;
-        }
-        else if (novaSifra.getText().length() < 8 )
-        {
-            alertMes.failMess("Nova sifra mora imati bar 8 karaktera");
+        } else if (novaSifra.getText().length() < 8) {
+            alertMes.failMess("Nova šifra mora imati bar 8 karaktera");
+            return;
+        } else if (!novaSifra.getText().equals(novaReSifra.getText())) {
+            alertMes.failMess("Šifre se ne poklapaju!");
             return;
         }
-        else if (!novaSifra.getText().equals(novaReSifra.getText()))
-        {
-            alertMes.failMess("Sifre se ne poklapaju!");
-            return;
 
-        }
-        else
-        {
-            String sql1 = "SELECT lozinka from korisnici WHERE ime = ?";
-            connection = Database.connectDB();
-            prepare = connection.prepareStatement(sql1);
-            prepare.setString(1,data.username);
-            result = prepare.executeQuery();
-
-            String lozinka = null;
-
-            if (result.next())
-            {
-                lozinka = result.getString("lozinka");
-                System.out.printf(lozinka);
-
-            }
-
-            if(lozinka.equals(trenutnaSifra.getText()))
-            {
-                alertMes.failMess("Ne moze ista sifra");
-                return;
-            }
-
-            if (lozinka.equals(trenutnaSifra.getText()))
-            {
-                String sql = "UPDATE korisnici SET lozinka = ? WHERE ime = ?";
-
-                connection = Database.connectDB();
-                prepare = connection.prepareStatement(sql);
-                prepare.setString(1,novaSifra.getText());
-                prepare.setString(2,data.username);
-
-                Integer info = prepare.executeUpdate();
-
-                if(info > 0)
-                {
-                    alertMes.successMes("Sifra promenjena");
-                    trenutnaSifra.getScene().getWindow().hide();
-
-
+        String sql1 = "SELECT lozinka from korisnici WHERE ime = ?";
+        try (Connection connection = Database.connectDB();
+             PreparedStatement prepare = connection.prepareStatement(sql1)) {
+            prepare.setString(1, data.username);
+            try (ResultSet result = prepare.executeQuery()) {
+                if (result.next()) {
+                    String lozinka = result.getString("lozinka");
+                    System.out.printf(lozinka,trenutnaSifra.getText(),novaReSifra.getText());
+                    if (!lozinka.equals(trenutnaSifra.getText())) {
+                        alertMes.failMess("Morate unjeti staru sifru tacnu");
+                        return;
+                    } else {
+                        String sql = "UPDATE korisnici SET lozinka = ? WHERE ime = ?";
+                        try (PreparedStatement updateStatement = connection.prepareStatement(sql)) {
+                            updateStatement.setString(1, novaSifra.getText());
+                            updateStatement.setString(2, data.username);
+                            int info = updateStatement.executeUpdate();
+                            if (info > 0) {
+                                alertMes.successMes("Šifra promenjena");
+                                trenutnaSifra.getScene().getWindow().hide();
+                            }
+                        }
+                    }
+                } else {
+                    alertMes.failMess("Netacni podaci");
                 }
-
             }
-            else
-            {
-                alertMes.failMess("Netacna trenunta  sifra");
-            }
-
-
-
-
-
-
         }
-
     }
-
 
 
 

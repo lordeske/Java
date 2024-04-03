@@ -38,6 +38,9 @@
 
         @FXML
         private Button azuriraj;
+
+        @FXML
+        private Label brojProizovdaText;
         @FXML
         private GridPane MeniGridPane;
 
@@ -358,6 +361,7 @@
                     prikaziTabeluData();
                     ocisti();
                     popuniMeni();
+                    ukupanBrojProizovda();
 
                 }
 
@@ -630,6 +634,7 @@
                     ocisti();
                     alertMes.successMes("Uspjesno ste dodali proizvod");
                     popuniMeni();
+                    ukupanBrojProizovda();
 
                 }
 
@@ -746,6 +751,7 @@
                             prikaziTabeluData();
                             ocisti();
                             popuniMeni();
+                            ukupanBrojProizovda();
 
 
                         }
@@ -780,6 +786,30 @@
 
         }
 
+        public void ukupanBrojProizovda() throws SQLException {
+
+            Integer brojProizvoda;
+            String SQL  = "SELECT COUNT(*) AS broj_proizvoda FROM proizvodi";
+
+            prepare = connection.prepareStatement(SQL);
+            result = prepare.executeQuery();
+
+            if(result.next())
+            {
+                brojProizvoda =  result.getInt("broj_proizvoda");
+                brojProizovdaText.setText(String.valueOf(brojProizvoda));
+
+            }
+            else
+            {
+                brojProizovdaText.setText("0");
+            }
+
+
+
+
+        }
+
 
 
 
@@ -795,6 +825,7 @@
                 popuniRacun();
                 displayUkupnoText();
                 pitaFunc();
+                ukupanBrojProizovda();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

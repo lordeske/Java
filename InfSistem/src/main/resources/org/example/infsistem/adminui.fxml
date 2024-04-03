@@ -41,9 +41,9 @@
                <children>
                   <AnchorPane layoutX="54.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="kartica-round">
                      <children>
-                        <FontAwesomeIconView glyphName="USERS" layoutX="105.0" layoutY="88.0" size="75" styleClass="fontAwesomeIconView" />
-                        <Label layoutX="72.0" layoutY="154.0" styleClass="bijela" text="Ukupan broj radnika" />
-                        <Label layoutX="132.0" layoutY="121.0" styleClass="bijela" text="0.0" />
+                        <FontAwesomeIconView glyphName="APPLE" layoutX="116.0" layoutY="88.0" size="75" styleClass="fontAwesomeIconView" />
+                        <Label layoutX="63.0" layoutY="154.0" styleClass="bijela" text="Ukupan broj proizvoda" />
+                        <Label fx:id="brojProizovdaText" layoutX="134.0" layoutY="122.0" styleClass="bijela" text="0.0" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="357.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="kartica-round">
