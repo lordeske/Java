@@ -203,7 +203,7 @@
 
         public void pitaFunc() throws SQLException {
 
-            String SQL = "SELECT ocena, COUNT(*) as count GROUP BY ocena";
+            String SQL = "SELECT ocena, COUNT(*) as count FROM recenzije GROUP by ocena";
             connection = Database.connectDB();
             prepare = connection.prepareStatement(SQL);
             result = prepare.executeQuery();

@@ -21,6 +21,8 @@
     import java.awt.Desktop;
 
     import java.io.File;
+    import java.io.FileInputStream;
+    import java.io.FileNotFoundException;
     import java.io.IOException;
     import java.net.URL;
     import java.sql.*;
@@ -59,6 +61,9 @@
         private Button btnObrisi;
         @FXML
         private Button editBtn;
+
+        @FXML
+        private ImageView slikica;
 
 
         @FXML
@@ -843,6 +848,18 @@
 
         }
 
+        public void setSlikica() throws FileNotFoundException {
+            FileInputStream inputstream = new FileInputStream("C:\\Users\\Strix\\Desktop\\vector-fast-food-posters-set.jpg");
+
+
+
+            Image image = new Image(inputstream);
+
+
+            slikica.setImage(image);
+
+        }
+
 
 
 
@@ -857,6 +874,7 @@
                 showData();
                 displayMenuTotal();
                 prikaziChart();
+                setSlikica();
 
             } catch (SQLException e) {
                 throw new RuntimeException(e);

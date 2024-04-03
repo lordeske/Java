@@ -5,7 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="160.0" prefWidth="204.0" styleClass="meniadmin" stylesheets="@../../../Desing/zaAdmina.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infsistem.KarticaNarudzbi">
+<AnchorPane prefHeight="177.0" prefWidth="184.0" styleClass="meniadmin" stylesheets="@../../../Desing/zaAdmina.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infsistem.KarticaNarudzbi">
    <children>
       <Label fx:id="HranaText" layoutX="23.0" layoutY="45.0" prefHeight="22.0" prefWidth="146.0" styleClass="bijela4" stylesheets="@../../../Desing/user.css" text="Racun je narucio -">
          <padding>

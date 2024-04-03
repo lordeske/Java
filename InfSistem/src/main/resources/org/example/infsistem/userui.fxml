@@ -10,6 +10,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -36,23 +37,13 @@
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css" visible="false">
+            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
                <children>
-                  <AnchorPane layoutX="66.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
+                  <AnchorPane layoutX="36.0" layoutY="28.0" prefHeight="486.0" prefWidth="608.0">
                      <children>
-                        <FontAwesomeIconView glyphName="USERS" layoutX="105.0" layoutY="88.0" size="75" styleClass="fontAwesomeIconView" />
-                        <Label layoutX="57.0" layoutY="158.0" text="Ukupan broj radnika" />
-                        <Label layoutX="132.0" layoutY="121.0" text="0.0" />
+                        <ImageView fx:id="slikica" fitHeight="434.0" fitWidth="497.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="371.0" layoutY="28.0" prefHeight="200.0" prefWidth="290.0" styleClass="block">
-                     <children>
-                        <FontAwesomeIconView glyphName="MONEY" layoutX="123.0" layoutY="89.0" size="77" styleClass="fontAwesomeIconView" text="" />
-                        <Label layoutX="81.0" layoutY="158.0" text="Ukupna zarada" />
-                        <Label layoutX="132.0" layoutY="124.0" text="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="66.0" layoutY="275.0" prefHeight="238.0" prefWidth="595.0" styleClass="block" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="FormaMeni" layoutX="220.0" prefHeight="547.0" prefWidth="697.0" visible="false">
@@ -110,7 +101,7 @@
                      </children>
                   </AnchorPane>
                </children></AnchorPane>
-            <AnchorPane fx:id="FormaOceniNas" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0">
+            <AnchorPane fx:id="FormaOceniNas" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" visible="false">
                <children>
                   <AnchorPane layoutX="12.0" layoutY="14.0" prefHeight="171.0" prefWidth="670.0" styleClass="meniadmin" stylesheets="@../../../Desing/zaAdmina.css">
                      <children>
