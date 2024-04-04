@@ -20,11 +20,11 @@
 
 <StackPane prefHeight="569.0" prefWidth="931.0" stylesheets="@../../../Desing/admin.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.infsistem.MainFormControllerUser">
    <children>
-      <AnchorPane fx:id="main_form" prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane fx:id="main_form" prefHeight="562.0" prefWidth="931.0">
          <children>
             <BorderPane prefHeight="570.0" prefWidth="206.0">
                <left>
-                  <AnchorPane prefHeight="570.0" prefWidth="176.0" styleClass="Panel-card" stylesheets="@../../../Desing/zaAdmina.css" BorderPane.alignment="CENTER">
+                  <AnchorPane prefHeight="577.0" prefWidth="198.0" styleClass="Panel-card" stylesheets="@../../../Desing/zaAdmina.css" BorderPane.alignment="CENTER">
                      <children>
                         <FontAwesomeIconView glyphName="USER" layoutX="77.0" layoutY="70.0" size="65" styleClass="fontAwesomeIconView" wrappingWidth="13.600006103515625" />
                         <Label fx:id="username" layoutX="10.0" layoutY="88.0" prefHeight="27.0" prefWidth="187.0" />
@@ -37,11 +37,13 @@
                   </AnchorPane>
                </left>
             </BorderPane>
-            <AnchorPane fx:id="formaPocetna" layoutX="225.0" layoutY="18.0" prefHeight="538.0" prefWidth="690.0" stylesheets="@../../../Desing/admin.css">
+            <AnchorPane fx:id="formaPocetna" layoutX="206.0" layoutY="16.0" prefHeight="547.0" prefWidth="714.0" stylesheets="@../../../Desing/admin.css">
                <children>
-                  <AnchorPane layoutX="36.0" layoutY="28.0" prefHeight="486.0" prefWidth="608.0">
+                  <AnchorPane layoutY="-4.0" prefHeight="538.0" prefWidth="711.0">
                      <children>
-                        <ImageView fx:id="slikica" fitHeight="434.0" fitWidth="497.0" layoutX="55.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="slikica" fitHeight="358.0" fitWidth="700.0" layoutX="11.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="slikica1" fitHeight="161.0" fitWidth="334.0" layoutX="11.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="slikica2" fitHeight="161.0" fitWidth="344.0" layoutX="361.0" layoutY="372.0" pickOnBounds="true" preserveRatio="true" />
                      </children>
                   </AnchorPane>
                </children>

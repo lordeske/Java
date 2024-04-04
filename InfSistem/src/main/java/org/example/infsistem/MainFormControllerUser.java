@@ -64,6 +64,12 @@
 
         @FXML
         private ImageView slikica;
+        @FXML
+        private ImageView slikica1;
+
+
+        @FXML
+        private ImageView slikica2;
 
 
         @FXML
@@ -849,16 +855,25 @@
         }
 
         public void setSlikica() throws FileNotFoundException {
-            FileInputStream inputstream = new FileInputStream("C:\\Users\\Strix\\Desktop\\vector-fast-food-posters-set.jpg");
+            FileInputStream inputstream = new FileInputStream("C:\\Users\\Strix\\Desktop\\viser.JPG");
+            FileInputStream inputstream1 = new FileInputStream("C:\\Users\\Strix\\Desktop\\fast-food-wide-format-ron-magnes.jpg");
+            FileInputStream inputstream2 = new FileInputStream("C:\\Users\\Strix\\Desktop\\movie-night-snacks-ron-magnes.jpg");
 
 
 
             Image image = new Image(inputstream);
+            Image image1 = new Image(inputstream1);
+            Image image2 = new Image(inputstream2);
 
 
             slikica.setImage(image);
+            slikica1.setImage(image1);
+            slikica2.setImage(image2);
 
         }
+
+
+
 
 
 

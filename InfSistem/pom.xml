@@ -33,6 +33,7 @@
 
 
 
+
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -57,11 +58,6 @@
         </dependency>
         <dependency>
             <groupId>com.itextpdf</groupId>
-            <artifactId>itext7-core</artifactId>
-            <version>8.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf</groupId>
             <artifactId>layout</artifactId>
             <version>8.0.2</version>
         </dependency>
@@ -69,6 +65,11 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version>
+        </dependency>
+        <dependency>
+            <groupId>com.gluonhq</groupId>
+            <artifactId>maps</artifactId>
+            <version>2.0.0-ea+6</version>
         </dependency>
 
 

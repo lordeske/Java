@@ -27,11 +27,10 @@
                      <children>
                         <FontAwesomeIconView glyphName="USER" layoutX="80.0" layoutY="78.0" size="65" styleClass="fontAwesomeIconView" wrappingWidth="38.399999999999864" />
                         <Label fx:id="username" layoutX="10.0" layoutY="88.0" prefHeight="27.0" prefWidth="187.0" />
-                        <Button fx:id="btnPocetna" layoutX="43.0" layoutY="159.0" mnemonicParsing="false" onAction="#displayPocetna" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" stylesheets="@../../../Desing/zaAdmina.css" text="Pocetna" />
-                        <Button fx:id="btnMeni" layoutX="43.0" layoutY="197.0" mnemonicParsing="false" onAction="#displayMeni" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Meni" />
-                        <Button fx:id="btnZaposleni" layoutX="43.0" layoutY="234.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Zaposleni" />
-                        <Button fx:id="btnNarudzbine" layoutX="43.0" layoutY="274.0" mnemonicParsing="false" onAction="#displayNarudzbe" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Narudzbe" />
-                        <Button fx:id="btnInvertar" layoutX="43.0" layoutY="314.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Invertar" />
+                        <Button fx:id="btnPocetna" layoutX="46.0" layoutY="158.0" mnemonicParsing="false" onAction="#displayPocetna" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" stylesheets="@../../../Desing/zaAdmina.css" text="Pocetna" />
+                        <Button fx:id="btnMeni" layoutX="46.0" layoutY="196.0" mnemonicParsing="false" onAction="#displayMeni" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Meni" />
+                        <Button fx:id="btnNarudzbine" layoutX="46.0" layoutY="235.0" mnemonicParsing="false" onAction="#displayNarudzbe" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Narudzbe" />
+                        <Button fx:id="btnInvertar" layoutX="46.0" layoutY="272.0" mnemonicParsing="false" onAction="#displayInvertar" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Invertar" />
                         <Button fx:id="odjava" layoutX="42.0" layoutY="476.0" mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="115.0" styleClass="PadajucaBox" text="Odjava" />
                      </children>
                   </AnchorPane>
